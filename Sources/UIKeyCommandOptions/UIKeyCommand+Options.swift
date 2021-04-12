@@ -20,7 +20,7 @@ public extension UIKeyCommand {
         case key(String)
         
         /// Receives a key that must be pressed.
-        static func key(_ character: Character) -> Options { .key(String(character)) }
+        public static func key(_ character: Character) -> Options { .key(String(character)) }
         
         // MARK: Special Keys
         
