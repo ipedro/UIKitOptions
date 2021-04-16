@@ -11,10 +11,11 @@ public extension UILabel {
     /// Applies the appearance options to the label instance.
     /// - Parameter options: The label appearance options.
     func applyOptions(_ options: Options) {
-        adjustsFontSizeToFitWidth = options.adjustsFontSizeToFitWidth
-        textAlignment             = options.textAlignment
-        minimumScaleFactor        = options.minimumScaleFactor
-        numberOfLines             = options.numberOfLines
+        adjustsFontSizeToFitWidth            = options.adjustsFontSizeToFitWidth
+        textAlignment                        = options.textAlignment
+        minimumScaleFactor                   = options.minimumScaleFactor
+        numberOfLines                        = options.numberOfLines
+        allowsDefaultTighteningForTruncation = options.allowsDefaultTighteningForTruncation
         
         if let preferredMaxLayoutWidth = options.preferredMaxLayoutWidth {
             self.preferredMaxLayoutWidth = preferredMaxLayoutWidth
@@ -50,6 +51,9 @@ public extension UILabel {
         /// A Boolean value indicating whether the font size should be reduced in order to fit the title string into the label’s bounding rectangle.
         public var adjustsFontSizeToFitWidth: Bool
         
+        /// A Boolean value that determines whether the label tightens text before truncating.
+        public var allowsDefaultTighteningForTruncation: Bool
+        
         /// The preferred maximum width, in points, for a multiline label.
         public var preferredMaxLayoutWidth: CGFloat?
         
@@ -66,6 +70,7 @@ public extension UILabel {
         ///   - adjustsFontSizeToFitWidth: A Boolean value indicating whether the font size should be reduced in order to fit the title string into the label’s bounding rectangle.
         ///   - viewOptions: The appearance options of the view.
         ///   - preferredMaxLayoutWidth: The preferred maximum width, in points, for a multiline label.
+        ///   - allowsDefaultTighteningForTruncation: A Boolean value that determines whether the label tightens text before truncating.
         public init(
             font: UIFont? = nil,
             textColor: UIColor? = nil,
@@ -73,17 +78,19 @@ public extension UILabel {
             numberOfLines: Int = 1,
             minimumScaleFactor: CGFloat = 0,
             adjustsFontSizeToFitWidth: Bool = false,
+            allowsDefaultTighteningForTruncation: Bool = false,
             preferredMaxLayoutWidth: CGFloat? = nil,
             viewOptions: UIView.Options? = nil
         ) {
-            self.font                      = font
-            self.textColor                 = textColor
-            self.textAlignment             = textAlignment
-            self.minimumScaleFactor        = minimumScaleFactor
-            self.numberOfLines             = numberOfLines
-            self.adjustsFontSizeToFitWidth = adjustsFontSizeToFitWidth
-            self.preferredMaxLayoutWidth   = preferredMaxLayoutWidth
-            self.viewOptions               = viewOptions
+            self.font                                 = font
+            self.textColor                            = textColor
+            self.textAlignment                        = textAlignment
+            self.minimumScaleFactor                   = minimumScaleFactor
+            self.numberOfLines                        = numberOfLines
+            self.adjustsFontSizeToFitWidth            = adjustsFontSizeToFitWidth
+            self.allowsDefaultTighteningForTruncation = allowsDefaultTighteningForTruncation
+            self.preferredMaxLayoutWidth              = preferredMaxLayoutWidth
+            self.viewOptions                          = viewOptions
         }
         
         /// Initializes a UILabel.Options object.
@@ -97,6 +104,7 @@ public extension UILabel {
         ///   - adjustsFontSizeToFitWidth: A Boolean value indicating whether the font size should be reduced in order to fit the title string into the label’s bounding rectangle.
         ///   - preferredMaxLayoutWidth: The preferred maximum width, in points, for a multiline label.
         ///   - viewOptions: The appearance options of the view.
+        ///   - allowsDefaultTighteningForTruncation: A Boolean value that determines whether the label tightens text before truncating.
         public init(
             fontStyle: UIFont.TextStyle = .body,
             fontTraits: UIFontDescriptor.SymbolicTraits = [],
@@ -105,17 +113,19 @@ public extension UILabel {
             numberOfLines: Int = 0,
             minimumScaleFactor: CGFloat = 0,
             adjustsFontSizeToFitWidth: Bool = false,
+            allowsDefaultTighteningForTruncation: Bool = false,
             preferredMaxLayoutWidth: CGFloat? = nil,
             viewOptions: UIView.Options? = nil
         ) {
-            self.font                      = .preferredFont(forTextStyle: fontStyle, with: fontTraits)
-            self.textColor                 = textColor
-            self.textAlignment             = textAlignment
-            self.minimumScaleFactor        = minimumScaleFactor
-            self.numberOfLines             = numberOfLines
-            self.adjustsFontSizeToFitWidth = adjustsFontSizeToFitWidth
-            self.preferredMaxLayoutWidth   = preferredMaxLayoutWidth
-            self.viewOptions               = viewOptions
+            self.font                                 = .preferredFont(forTextStyle: fontStyle, with: fontTraits)
+            self.textColor                            = textColor
+            self.textAlignment                        = textAlignment
+            self.minimumScaleFactor                   = minimumScaleFactor
+            self.numberOfLines                        = numberOfLines
+            self.adjustsFontSizeToFitWidth            = adjustsFontSizeToFitWidth
+            self.allowsDefaultTighteningForTruncation = allowsDefaultTighteningForTruncation
+            self.preferredMaxLayoutWidth              = preferredMaxLayoutWidth
+            self.viewOptions                          = viewOptions
         }
     }
 }
