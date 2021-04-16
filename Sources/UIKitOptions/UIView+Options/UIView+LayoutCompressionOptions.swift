@@ -10,13 +10,13 @@ import UIKit
 public extension UIView {
     /// Applies the layout compression options to the view instance.
     /// - Parameter options: The view layout compresison options.
-    func applyOptions(_ options: LayoutCompressionOptions...) {
+    func applyOptions(_ options: LayoutCompressionOption...) {
         applyOptions(options)
     }
     
     /// Applies the layout compression options to the view instance.
     /// - Parameter options: The view layout compresison options.
-    func applyOptions(_ options: [LayoutCompressionOptions]) {
+    func applyOptions(_ options: LayoutCompressionOptions) {
         options.forEach { option in
             switch option {
             case let .horizontalCompressionResistance(priority):
@@ -34,8 +34,10 @@ public extension UIView {
         }
     }
     
+    typealias LayoutCompressionOptions = [LayoutCompressionOption]
+    
     /// Describes the view's layout compression and hugging priorities.
-    enum LayoutCompressionOptions: Equatable {
+    enum LayoutCompressionOption: Equatable {
         /// The priority with which a view resists being made smaller than its intrinsic width.
         case horizontalCompressionResistance(UILayoutPriority)
         

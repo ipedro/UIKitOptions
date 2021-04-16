@@ -8,9 +8,9 @@
 import UIKit
 
 public extension UIView {
-    convenience init(frame: CGRect = .zero, options: Options...) {
+    convenience init(frame: CGRect = .zero, options: Option...) {
         self.init(frame: frame)
         
-        applyOptions(options)
+        apply(viewOptions: options)
     }
 }

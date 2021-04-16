@@ -19,7 +19,7 @@ public extension UIStackView {
         isLayoutMarginsRelativeArrangement = options.isLayoutMarginsRelativeArrangement
         
         if let viewOptions = options.viewOptions {
-            applyOptions(viewOptions)
+            apply(viewOptions: viewOptions)
         }
     }
     
@@ -44,7 +44,7 @@ public extension UIStackView {
         public var isLayoutMarginsRelativeArrangement: Bool = true
         
         /// The optional appearance options of the view.
-        public var viewOptions: UIView.Options?
+        public var viewOptions: UIView.Option?
         
         /// Vertical arrangement with zero spacing between subviews.
         ///
@@ -60,7 +60,7 @@ public extension UIStackView {
             layoutMargins: NSDirectionalEdgeInsets = .zero,
             alignment: VerticalAlignment = .fill,
             distribution: UIStackView.Distribution = .fill,
-            viewOptions: UIView.Options? = nil
+            viewOptions: UIView.Option? = nil
         ) -> Options {
             return Options(
                 axis: .vertical,
@@ -84,7 +84,7 @@ public extension UIStackView {
             layoutMargins: NSDirectionalEdgeInsets = .zero,
             alignment: HorizontalAlignment = .fill,
             distribution: UIStackView.Distribution = .fill,
-            viewOptions: UIView.Options? = nil
+            viewOptions: UIView.Option? = nil
         ) -> Options {
             return Options(
                 axis: .horizontal,

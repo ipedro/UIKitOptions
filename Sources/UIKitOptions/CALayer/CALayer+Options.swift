@@ -10,14 +10,14 @@ import UIKit
 public extension CALayer {
     /// Applies the appearance options to the layer instance.
     /// - Parameter options: The layer appearance options.
-    func applyOptions(_ options: Options...) {
-        applyOptions(options)
+    func apply(layerOptions: Option...) {
+        apply(layerOptions: layerOptions)
     }
     
     /// Applies the appearance options to the layer instance.
     /// - Parameter options: The layer appearance options.
-    func applyOptions(_ options: [Options]) {
-        options.forEach { option in
+    func apply(layerOptions: Options) {
+        layerOptions.forEach { option in
             switch option {
             case let .anchorPoint(anchorPoint):
                 self.anchorPoint = anchorPoint
@@ -70,8 +70,10 @@ public extension CALayer {
         }
     }
     
+    typealias Options = [Option]
+    
     /// Describes the layer's appearance.
-    enum Options: Equatable {
+    enum Option: Equatable {
         /// Defines the anchor point of the layer's bounds rectangle. Animatable.
         case anchorPoint(CGPoint)
         

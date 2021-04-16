@@ -10,17 +10,19 @@ import UIKit
 // MARK: - UILabel Extension
 
 public extension UILabel {
-    convenience init(text: String? = nil, options: Options) {
+    convenience init(text: String? = nil, options: Option...) {
         self.init()
         
         self.text = text
-        self.applyOptions(options)
+        
+        apply(labelOptions: options)
     }
     
-    convenience init(attributedText: NSAttributedString, options: Options = Options()) {
+    convenience init(attributedText: NSAttributedString, options: Option...) {
         self.init()
         
         self.attributedText = attributedText
-        self.applyOptions(options)
+        
+        apply(labelOptions: options)
     }
 }

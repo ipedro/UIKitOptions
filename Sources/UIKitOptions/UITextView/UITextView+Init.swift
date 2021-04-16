@@ -10,23 +10,23 @@ import UIKit
 // MARK: - UITextView Extension
 
 public extension UITextView {
-    convenience init(text: String? = nil, options: Options...) {
+    convenience init(text: String? = nil, options: Option...) {
         self.init()
         
         if let text = text {
             self.text = text
         }
         
-        self.applyOptions(options)
+        apply(textViewOptions: options)
     }
     
-    convenience init(attributedText: NSAttributedString?, options: Options...) {
+    convenience init(attributedText: NSAttributedString?, options: Option...) {
         self.init()
         
         if let attributedText = attributedText {
             self.attributedText = attributedText
         }
         
-        self.applyOptions(options)
+        apply(textViewOptions: options)
     }
 }

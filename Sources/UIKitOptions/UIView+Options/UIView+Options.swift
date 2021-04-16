@@ -10,14 +10,14 @@ import UIKit
 public extension UIView {
     /// Applies the appearance options to the view instance.
     /// - Parameter options: The view appearance options.
-    func applyOptions(_ options: Options...) {
-        applyOptions(options)
+    func apply(viewOptions: Option...) {
+        apply(viewOptions: viewOptions)
     }
     
     /// Applies the appearance options to the view instance.
     /// - Parameter options: The view appearance options.
-    func applyOptions(_ options: [Options]) {
-        options.forEach { option in
+    func apply(viewOptions: Options) {
+        viewOptions.forEach { option in
             switch option {
             case let .backgroundColor(backgroundColor):
                 self.backgroundColor = backgroundColor
@@ -37,21 +37,22 @@ public extension UIView {
             case let .alpha(alpha):
                 self.alpha = alpha
                 
+            case let .isUserInteractionEnabled(isUserInteractionEnabled):
+                self.isUserInteractionEnabled = isUserInteractionEnabled
+                
             case let .layoutCompression(layoutCompressionOptions):
                 self.applyOptions(layoutCompressionOptions)
                 
             case let .layerOptions(layerOptions):
-                layer.applyOptions(layerOptions)
-                
-            case let .isUserInteractionEnabled(isUserInteractionEnabled):
-                self.isUserInteractionEnabled = isUserInteractionEnabled
-                
+                layer.apply(layerOptions: layerOptions)
             }
         }
     }
     
+    typealias Options = [Option]
+    
     /// An object that defines the appearance of a view.
-    enum Options: Equatable {
+    enum Option: Equatable {
         /// The view’s background color.
         case backgroundColor(UIColor)
         
@@ -73,8 +74,18 @@ public extension UIView {
         /// Describes the view's layout compression and hugging priorities.
         case layoutCompression(LayoutCompressionOptions)
         
-        /// /// Describes the layer's appearance.
+        /// Describes the view's layout compression and hugging priorities.
+        public static func layoutCompression(_ options: LayoutCompressionOption...) -> Self {
+            .layoutCompression(options)
+        }
+        
+        /// Describes the layer's appearance.
         case layerOptions(CALayer.Options)
+        
+        /// Describes the layer's appearance.
+        public static func layerOptions(_ layerOptions: CALayer.Option...) -> Self {
+            .layerOptions(layerOptions)
+        }
         
         /// A Boolean value that determines whether user events are ignored and removed from the event queue.
         case isUserInteractionEnabled(Bool)

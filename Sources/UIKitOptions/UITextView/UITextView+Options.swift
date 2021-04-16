@@ -10,17 +10,20 @@ import UIKit
 public extension UITextView {
     /// Applies the appeareance options to the text view instance.
     /// - Parameter options: The text view appearance options.
-    func applyOptions(_ options: Options...) {
-        applyOptions(options)
+    func apply(textViewOptions: Option...) {
+        apply(textViewOptions: textViewOptions)
     }
         
     /// Applies the appeareance options to the text view instance.
     /// - Parameter options: The text view appearance options.
-    func applyOptions(_ options: [Options]) {
-        options.forEach { option in
+    func apply(textViewOptions: Options) {
+        textViewOptions.forEach { option in
             switch option {
             case let .font(font):
                 self.font = font
+                
+            case let .fontStyle(textStyle, traits):
+                self.font = .preferredFont(forTextStyle: textStyle, with: traits)
                 
             case let .textColor(textColor):
                 self.textColor = textColor
@@ -44,16 +47,20 @@ public extension UITextView {
                 self.dataDetectorTypes = dataDetectorTypes
                 
             case let .viewOptions(viewOptions):
-                applyOptions(viewOptions)
-                
+                apply(viewOptions: viewOptions)
             }
         }
     }
     
+    typealias Options = [Option]
+    
     /// An object that defines the appearance of a text view.
-    enum Options {
+    enum Option {
         /// The font of the text.
         case font(UIFont)
+        
+        /// Constants that describe the preferred styles for fonts.
+        case fontStyle(_ style: UIFont.TextStyle, traits: UIFontDescriptor.SymbolicTraits = [])
         
         /// The color of the text.
         case textColor(UIColor)
@@ -78,5 +85,20 @@ public extension UITextView {
         
         /// The appearance options of the view.
         case viewOptions(UIView.Options)
+        
+        /// The appearance options of the view.
+        public static func viewOptions(_ viewOptions: UIView.Option...) -> Self {
+            .viewOptions(viewOptions)
+        }
+        
+        /// Describes the layer's appearance.
+        public static func layerOptions(_ layerOptions: CALayer.Option...) -> Self {
+            .viewOptions(.layerOptions(layerOptions))
+        }
+        
+        /// Describes the view's layout compression and hugging priorities.
+        public static func layoutCompression(_ options: LayoutCompressionOption...) -> Self {
+            .viewOptions(.layoutCompression(options))
+        }
     }
 }

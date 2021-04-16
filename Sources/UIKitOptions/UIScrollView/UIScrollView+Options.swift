@@ -9,90 +9,116 @@ import UIKit
 
 public extension UIScrollView {
     
-    func applyOptions(_ options: Options) {
-        self.contentInset                   = options.contentInset
-        self.isDirectionalLockEnabled       = options.isDirectionalLockEnabled
-        self.bounces                        = options.bounces
-        self.alwaysBounceVertical           = options.alwaysBounceVertical
-        self.alwaysBounceHorizontal         = options.alwaysBounceHorizontal
-        self.isPagingEnabled                = options.isPagingEnabled
-        self.isScrollEnabled                = options.isScrollEnabled
-        self.showsVerticalScrollIndicator   = options.showsVerticalScrollIndicator
-        self.showsHorizontalScrollIndicator = options.showsHorizontalScrollIndicator
-        self.indicatorStyle                 = options.indicatorStyle
-        self.decelerationRate               = options.decelerationRate
-        self.keyboardDismissMode            = options.keyboardDismissMode
-        self.scrollsToTop                   = options.scrollsToTop
+    func apply(scrollViewOptions: Option...) {
+        apply(scrollViewOptions: scrollViewOptions)
+    }
+        
+    func apply(scrollViewOptions: Options) {
+        scrollViewOptions.forEach { option in
+            switch option {
+            case let .contentInset(contentInset):
+                self.contentInset = contentInset
+                
+            case let .isDirectionalLockEnabled(isDirectionalLockEnabled):
+                self.isDirectionalLockEnabled = isDirectionalLockEnabled
+                
+            case let .bounces(bounces):
+                self.bounces = bounces
+                
+            case let .alwaysBounceVertical(alwaysBounceVertical):
+                self.alwaysBounceVertical = alwaysBounceVertical
+                
+            case let .alwaysBounceHorizontal(alwaysBounceHorizontal):
+                self.alwaysBounceHorizontal = alwaysBounceHorizontal
+                
+            case let .isPagingEnabled(isPagingEnabled):
+                self.isPagingEnabled = isPagingEnabled
+                
+            case let .isScrollEnabled(isScrollEnabled):
+                self.isScrollEnabled = isScrollEnabled
+                
+            case let .showsVerticalScrollIndicator(showsVerticalScrollIndicator):
+                self.showsVerticalScrollIndicator = showsVerticalScrollIndicator
+                
+            case let .showsHorizontalScrollIndicator(showsHorizontalScrollIndicator):
+                self.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator
+                
+            case let .indicatorStyle(indicatorStyle):
+                self.indicatorStyle = indicatorStyle
+                
+            case let .decelerationRate(decelerationRate):
+                self.decelerationRate = decelerationRate
+                
+            case let .keyboardDismissMode(keyboardDismissMode):
+                self.keyboardDismissMode = keyboardDismissMode
+                
+            case let .scrollsToTop(scrollsToTop):
+                self.scrollsToTop = scrollsToTop
+                
+            case let .viewOptions(viewOptions):
+                apply(viewOptions: viewOptions)
+            }
+        }
     }
     
-    struct Options: Equatable {
+    typealias Options = [Option]
+    
+    enum Option: Equatable {
         /// default UIEdgeInsetsZero. add additional scroll area around content
-        public var contentInset: UIEdgeInsets
+        case contentInset(UIEdgeInsets)
         
         /// default NO. if YES, try to lock vertical or horizontal scrolling while dragging
-        public var isDirectionalLockEnabled: Bool
+        case isDirectionalLockEnabled(Bool)
 
         /// default YES. if YES, bounces past edge of content and back again
-        public var bounces: Bool
+        case bounces(Bool)
 
         /// default NO. if YES and bounces is YES, even if content is smaller than bounds, allow drag vertically
-        public var alwaysBounceVertical: Bool
+        case alwaysBounceVertical(Bool)
 
         /// default NO. if YES and bounces is YES, even if content is smaller than bounds, allow drag horizontally
-        public var alwaysBounceHorizontal: Bool
+        case alwaysBounceHorizontal(Bool)
 
         /// default NO. if YES, stop on multiples of view bounds
-        public var isPagingEnabled: Bool
+        case isPagingEnabled(Bool)
 
         /// default YES. turn off any dragging temporarily
-        public var isScrollEnabled: Bool
+        case isScrollEnabled(Bool)
         
         /// default YES. show indicator while we are tracking. fades out after tracking
-        public var showsVerticalScrollIndicator: Bool
+        case showsVerticalScrollIndicator(Bool)
 
         /// default YES. show indicator while we are tracking. fades out after tracking
-        public var showsHorizontalScrollIndicator: Bool
+        case showsHorizontalScrollIndicator(Bool)
 
         /// default is UIScrollViewIndicatorStyleDefault
-        public var indicatorStyle: UIScrollView.IndicatorStyle
+        case indicatorStyle(UIScrollView.IndicatorStyle)
         
         /// A floating-point value that determines the rate of deceleration after the user lifts their finger.
-        public var decelerationRate: UIScrollView.DecelerationRate
+        case decelerationRate(UIScrollView.DecelerationRate)
         
         /// The manner in which the keyboard is dismissed when a drag begins in the scroll view.
-        public var keyboardDismissMode: UIScrollView.KeyboardDismissMode
+        case keyboardDismissMode(UIScrollView.KeyboardDismissMode)
         
         /// A Boolean value that controls whether the scroll-to-top gesture is enabled. default is YES.
-        var scrollsToTop: Bool
+        case scrollsToTop(Bool)
         
-        public init(
-            contentInset: UIEdgeInsets = .zero,
-            isDirectionalLockEnabled: Bool = false,
-            bounces: Bool = true,
-            alwaysBounceVertical: Bool = false,
-            alwaysBounceHorizontal: Bool = false,
-            isPagingEnabled: Bool = false,
-            isScrollEnabled: Bool = true,
-            showsVerticalScrollIndicator: Bool = true,
-            showsHorizontalScrollIndicator: Bool = true,
-            indicatorStyle: UIScrollView.IndicatorStyle = .default,
-            decelerationRate: UIScrollView.DecelerationRate = .normal,
-            keyboardDismissMode: UIScrollView.KeyboardDismissMode = .none,
-            scrollsToTop: Bool = true
-        ) {
-            self.contentInset                   = contentInset
-            self.isDirectionalLockEnabled       = isDirectionalLockEnabled
-            self.bounces                        = bounces
-            self.alwaysBounceVertical           = alwaysBounceVertical
-            self.alwaysBounceHorizontal         = alwaysBounceHorizontal
-            self.isPagingEnabled                = isPagingEnabled
-            self.isScrollEnabled                = isScrollEnabled
-            self.showsVerticalScrollIndicator   = showsVerticalScrollIndicator
-            self.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator
-            self.indicatorStyle                 = indicatorStyle
-            self.decelerationRate               = decelerationRate
-            self.keyboardDismissMode            = keyboardDismissMode
-            self.scrollsToTop                   = scrollsToTop
+        /// The appearance options of the view.
+        case viewOptions(UIView.Options)
+        
+        /// The appearance options of the view.
+        public static func viewOptions(_ viewOptions: UIView.Option...) -> Self {
+            .viewOptions(viewOptions)
+        }
+        
+        /// Describes the layer's appearance.
+        public static func layerOptions(_ layerOptions: CALayer.Option...) -> Self {
+            .viewOptions(.layerOptions(layerOptions))
+        }
+        
+        /// Describes the view's layout compression and hugging priorities.
+        public static func layoutCompression(_ options: LayoutCompressionOption...) -> Self {
+            .viewOptions(.layoutCompression(options))
         }
     }
 }

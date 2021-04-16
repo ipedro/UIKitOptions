@@ -9,10 +9,10 @@ import UIKit
 
 public extension UIImageView {
     
-    convenience init(image: UIImage? = nil, highlightedImage: UIImage? = nil, options: Options) {
+    convenience init(image: UIImage? = nil, highlightedImage: UIImage? = nil, options: Option...) {
         self.init(image: image, highlightedImage: highlightedImage)
         
-        applyOptions(options)
+        apply(viewOptions: options)
     }
     
 }
