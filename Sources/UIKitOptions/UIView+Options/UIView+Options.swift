@@ -74,7 +74,7 @@ public extension UIView {
         ///   - layoutCompression: Describes the view's layout compression and hugging priorities.
         ///   - alpha: The view’s alpha value.
         public init(
-            backgroundColor: UIColor? = .clear,
+            backgroundColor: UIColor? = nil,
             contentMode: UIView.ContentMode = .scaleToFill,
             cornerRadius: CGFloat = .zero,
             clipsToBounds: Bool = false,
