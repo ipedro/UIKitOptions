@@ -34,9 +34,6 @@ public extension UITextView {
             case let .isEditable(isEditable):
                 self.isEditable = isEditable
                 
-            case let .isScrollEnabled(isScrollEnabled):
-                self.isScrollEnabled = isScrollEnabled
-                
             case let .textContainerInset(textContainerInset):
                 self.textContainerInset = textContainerInset
                 
@@ -48,6 +45,9 @@ public extension UITextView {
                 
             case let .viewOptions(viewOptions):
                 apply(viewOptions: viewOptions)
+                
+            case let .scrollViewOptions(scrollViewOptions):
+                apply(scrollViewOptions: scrollViewOptions)
             }
         }
     }
@@ -71,9 +71,6 @@ public extension UITextView {
         /// A Boolean value that indicates whether the text view is editable.
         case isEditable(Bool)
         
-        /// A Boolean value that determines whether scrolling is enabled.
-        case isScrollEnabled(Bool)
-        
         /// The inset of the text container's layout area within the text view's content area.
         case textContainerInset(UIEdgeInsets)
         
@@ -86,17 +83,25 @@ public extension UITextView {
         /// The appearance options of the view.
         case viewOptions(UIView.Options)
         
-        /// The appearance options of the view.
+        /// The options of the scroll view.
+        case scrollViewOptions(UIScrollView.Options)
+        
+        /// The options of the scroll view.
+        public static func scrollViewOptions(_ scrollViewOptions: UIScrollView.Option...) -> Self {
+            .scrollViewOptions(scrollViewOptions)
+        }
+        
+        /// The base appearance options of the text view.
         public static func viewOptions(_ viewOptions: UIView.Option...) -> Self {
             .viewOptions(viewOptions)
         }
         
-        /// Describes the layer's appearance.
+        /// Describes the text view layer's appearance.
         public static func layerOptions(_ layerOptions: CALayer.Option...) -> Self {
             .viewOptions(.layerOptions(layerOptions))
         }
         
-        /// Describes the view's layout compression and hugging priorities.
+        /// Describes the text view's layout compression and hugging priorities.
         public static func layoutCompression(_ options: LayoutCompressionOption...) -> Self {
             .viewOptions(.layoutCompression(options))
         }

@@ -8,12 +8,12 @@
 import UIKit
 
 public extension UIStackView {
-    convenience init(arrangedSubviews: [UIView], options: Options) {
+    convenience init(arrangedSubviews: [UIView], options: Option...) {
         self.init()
         
         addArrangedSubviews(arrangedSubviews)
         
-        applyOptions(options)
+        apply(stackViewOptions: options)
     }
     
     static func vertical(
@@ -25,12 +25,12 @@ public extension UIStackView {
     ) -> UIStackView {
         UIStackView(
             arrangedSubviews: arrangedSubviews,
-            options: .verticalAxis(
-                spacing: spacing,
-                layoutMargins: layoutMargins,
-                alignment: alignment,
-                distribution: distribution
-            )
+            options:
+                .axis(.vertical),
+                .spacing(spacing),
+                .layoutMargins(layoutMargins),
+                .alignment(alignment.rawValue),
+                .distribution(distribution)
         )
     }
     
@@ -43,12 +43,12 @@ public extension UIStackView {
     ) -> UIStackView {
         UIStackView(
             arrangedSubviews: arrangedSubviews,
-            options: .horizontalAxis(
-                spacing: spacing,
-                layoutMargins: layoutMargins,
-                alignment: alignment,
-                distribution: distribution
-            )
+            options:
+                .axis(.horizontal),
+                .spacing(spacing),
+                .layoutMargins(layoutMargins),
+                .alignment(alignment.rawValue),
+                .distribution(distribution)
         )
     }
 }

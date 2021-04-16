@@ -19,17 +19,11 @@ public extension UIView {
     func applyOptions(_ options: LayoutCompressionOptions) {
         options.forEach { option in
             switch option {
-            case let .horizontalCompressionResistance(priority):
-                setContentCompressionResistancePriority(priority, for: .horizontal)
+            case let .compressionResistance(priority, for: axis):
+                setContentCompressionResistancePriority(priority, for: axis)
                 
-            case let .horizontalHuggingPriority(priority):
-                setContentHuggingPriority(priority, for: .horizontal)
-                
-            case let .verticalCompressionResistance(priority):
-                setContentCompressionResistancePriority(priority, for: .vertical)
-                
-            case let .verticalHuggingPriority(priority):
-                setContentHuggingPriority(priority, for: .vertical)
+            case let .huggingPriority(priority, for: axis):
+                setContentHuggingPriority(priority, for: axis)
             }
         }
     }
@@ -38,16 +32,10 @@ public extension UIView {
     
     /// Describes the view's layout compression and hugging priorities.
     enum LayoutCompressionOption: Equatable {
-        /// The priority with which a view resists being made smaller than its intrinsic width.
-        case horizontalCompressionResistance(UILayoutPriority)
+        /// The priority with which a view resists being made smaller than its intrinsic width or height.
+        case compressionResistance(UILayoutPriority, for: NSLayoutConstraint.Axis)
         
-        /// The priority with which a view resists being made larger than its intrinsic width.
-        case horizontalHuggingPriority(UILayoutPriority)
-        
-        /// The priority with which a view resists being made smaller than its intrinsic height.
-        case verticalCompressionResistance(UILayoutPriority)
-        
-        /// The priority with which a view resists being made larger than its intrinsic height.
-        case verticalHuggingPriority(UILayoutPriority)
+        /// The priority with which a view resists being made larger than its intrinsic width or height.
+        case huggingPriority(UILayoutPriority, for: NSLayoutConstraint.Axis)
     }
 }
