@@ -59,14 +59,16 @@ public extension UIStackView {
             spacing: CGFloat = .zero,
             layoutMargins: NSDirectionalEdgeInsets = .zero,
             alignment: VerticalAlignment = .fill,
-            distribution: UIStackView.Distribution = .fill
+            distribution: UIStackView.Distribution = .fill,
+            viewOptions: UIView.Options? = nil
         ) -> Options {
             return Options(
                 axis: .vertical,
                 spacing: spacing,
                 layoutMargins: layoutMargins,
                 alignment: alignment.rawValue,
-                distribution: distribution
+                distribution: distribution,
+                viewOptions: viewOptions
             )
         }
         
@@ -81,14 +83,16 @@ public extension UIStackView {
             spacing: CGFloat = .zero,
             layoutMargins: NSDirectionalEdgeInsets = .zero,
             alignment: HorizontalAlignment = .fill,
-            distribution: UIStackView.Distribution = .fill
+            distribution: UIStackView.Distribution = .fill,
+            viewOptions: UIView.Options? = nil
         ) -> Options {
             return Options(
                 axis: .horizontal,
                 spacing: spacing,
                 layoutMargins: layoutMargins,
                 alignment: alignment.rawValue,
-                distribution: distribution
+                distribution: distribution,
+                viewOptions: viewOptions
             )
         }
     }

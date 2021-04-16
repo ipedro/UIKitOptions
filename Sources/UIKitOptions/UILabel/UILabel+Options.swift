@@ -88,7 +88,8 @@ public extension UILabel {
         
         /// Initializes a UILabel.Options object.
         /// - Parameters:
-        ///   - textStyle: Constants that describe the preferred styles for fonts.
+        ///   - fontStyle: Constants that describe the preferred styles for fonts.
+        ///   - fontTraits: Constants that describe the stylistic aspects of a font.
         ///   - textColor: The color of the text.
         ///   - textAlignment: The technique to use for aligning the text.
         ///   - numberOfLines: The maximum number of lines to use for rendering text.
@@ -97,7 +98,8 @@ public extension UILabel {
         ///   - preferredMaxLayoutWidth: The preferred maximum width, in points, for a multiline label.
         ///   - viewOptions: The appearance options of the view.
         public init(
-            textStyle: UIFont.TextStyle = .body,
+            fontStyle: UIFont.TextStyle = .body,
+            fontTraits: UIFontDescriptor.SymbolicTraits = [],
             textColor: UIColor? = nil,
             textAlignment: NSTextAlignment = .natural,
             numberOfLines: Int = 0,
@@ -106,7 +108,7 @@ public extension UILabel {
             preferredMaxLayoutWidth: CGFloat? = nil,
             viewOptions: UIView.Options? = nil
         ) {
-            self.font                      = .preferredFont(forTextStyle: textStyle)
+            self.font                      = .preferredFont(forTextStyle: fontStyle, with: fontTraits)
             self.textColor                 = textColor
             self.textAlignment             = textAlignment
             self.minimumScaleFactor        = minimumScaleFactor

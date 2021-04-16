@@ -1,5 +1,5 @@
 //
-//  UILabel+Init.swift
+//  UITextView+Init.swift
 //  UIKitOptions
 //
 //  Created by Pedro on 16.04.21.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-// MARK: - UILabel Extension
+// MARK: - UITextView Extension
 
-public extension UILabel {
+public extension UITextView {
     convenience init(text: String? = nil, attributedText: NSAttributedString? = nil, options: Options) {
         self.init()
         

@@ -18,6 +18,9 @@ public extension UIView {
         clipsToBounds      = options.clipsToBounds
         tintColor          = options.tintColor
         
+        if let isUserInteractionEnabled = options.isUserInteractionEnabled {
+            self.isUserInteractionEnabled = isUserInteractionEnabled
+        }
         if let layoutCompressionOptions = options.layoutCompression {
             self.applyOptions(layoutCompressionOptions)
         }
@@ -46,6 +49,9 @@ public extension UIView {
         /// Describes the view's layout compression and hugging priorities.
         public var layoutCompression: LayoutCompressionOptions?
         
+        /// A Boolean value that determines whether user events are ignored and removed from the event queue.
+        var isUserInteractionEnabled: Bool?
+        
         /// Initializes a UIView.Options object.
         /// - Parameters:
         ///   - backgroundColor: The view’s background color.
@@ -54,6 +60,7 @@ public extension UIView {
         ///   - clipsToBounds: A Boolean value that determines whether subviews are confined to the bounds of the view.
         ///   - isHidden: A Boolean value that determines whether the view is hidden.
         ///   - tintColor: The view's tint color.
+        ///   - isUserInteractionEnabled: A Boolean value that determines whether user events are ignored and removed from the event queue.
         ///   - layoutCompression: Describes the view's layout compression and hugging priorities.
         public init(
             backgroundColor: UIColor? = nil,
@@ -62,15 +69,17 @@ public extension UIView {
             clipsToBounds: Bool = false,
             isHidden: Bool = false,
             tintColor: UIColor? = nil,
+            isUserInteractionEnabled: Bool? = nil,
             layoutCompression: LayoutCompressionOptions? = nil
         ) {
-            self.backgroundColor   = backgroundColor
-            self.contentMode       = contentMode
-            self.cornerRadius      = cornerRadius
-            self.clipsToBounds     = clipsToBounds
-            self.isHidden          = isHidden
-            self.tintColor         = tintColor
-            self.layoutCompression = layoutCompression
+            self.backgroundColor          = backgroundColor
+            self.contentMode              = contentMode
+            self.cornerRadius             = cornerRadius
+            self.clipsToBounds            = clipsToBounds
+            self.isHidden                 = isHidden
+            self.tintColor                = tintColor
+            self.isUserInteractionEnabled = isUserInteractionEnabled
+            self.layoutCompression        = layoutCompression
         }
     }
 }
