@@ -19,11 +19,14 @@ public extension UIView {
         tintColor          = options.tintColor
         alpha              = options.alpha
         
-        if let isUserInteractionEnabled = options.isUserInteractionEnabled {
-            self.isUserInteractionEnabled = isUserInteractionEnabled
+        if let userInteractionEnabled = options.isUserInteractionEnabled {
+            isUserInteractionEnabled = userInteractionEnabled
         }
         if let layoutCompressionOptions = options.layoutCompression {
-            self.applyOptions(layoutCompressionOptions)
+            applyOptions(layoutCompressionOptions)
+        }
+        if let layerOptions = options.layerOptions {
+            layer.applyOptions(layerOptions)
         }
     }
     
@@ -53,6 +56,9 @@ public extension UIView {
         /// Describes the view's layout compression and hugging priorities.
         public var layoutCompression: LayoutCompressionOptions?
         
+        /// /// Describes the layer's appearance.
+        public var layerOptions: CALayer.Options?
+        
         /// A Boolean value that determines whether user events are ignored and removed from the event queue.
         var isUserInteractionEnabled: Bool?
         
@@ -76,7 +82,8 @@ public extension UIView {
             tintColor: UIColor? = nil,
             isUserInteractionEnabled: Bool? = nil,
             alpha: CGFloat = 1.0,
-            layoutCompression: LayoutCompressionOptions? = nil
+            layoutCompression: LayoutCompressionOptions? = nil,
+            layerOptions: CALayer.Options? = nil
         ) {
             self.backgroundColor          = backgroundColor
             self.contentMode              = contentMode
@@ -87,6 +94,7 @@ public extension UIView {
             self.isUserInteractionEnabled = isUserInteractionEnabled
             self.alpha                    = alpha
             self.layoutCompression        = layoutCompression
+            self.layerOptions             = layerOptions
         }
     }
 }
