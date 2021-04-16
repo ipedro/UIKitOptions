@@ -10,45 +10,42 @@ import UIKit
 public extension UIView {
     /// Applies the layout compression options to the view instance.
     /// - Parameter options: The view layout compresison options.
-    func applyOptions(_ options: UIView.LayoutCompressionOptions) {
-        if let horizontalCompressionResistance = options.horizontalCompressionResistance {
-            setContentCompressionResistancePriority(horizontalCompressionResistance, for: .horizontal)
-        }
-        if let verticalCompressionResistance = options.verticalCompressionResistance {
-            setContentCompressionResistancePriority(verticalCompressionResistance, for: .vertical)
-        }
-        if let horizontalHuggingPriority = options.horizontalHuggingPriority {
-            setContentHuggingPriority(horizontalHuggingPriority, for: .horizontal)
-        }
-        if let verticalHuggingPriority = options.verticalHuggingPriority {
-            setContentHuggingPriority(verticalHuggingPriority, for: .vertical)
+    func applyOptions(_ options: LayoutCompressionOptions...) {
+        applyOptions(options)
+    }
+    
+    /// Applies the layout compression options to the view instance.
+    /// - Parameter options: The view layout compresison options.
+    func applyOptions(_ options: [LayoutCompressionOptions]) {
+        options.forEach { option in
+            switch option {
+            case let .horizontalCompressionResistance(priority):
+                setContentCompressionResistancePriority(priority, for: .horizontal)
+                
+            case let .horizontalHuggingPriority(priority):
+                setContentHuggingPriority(priority, for: .horizontal)
+                
+            case let .verticalCompressionResistance(priority):
+                setContentCompressionResistancePriority(priority, for: .vertical)
+                
+            case let .verticalHuggingPriority(priority):
+                setContentHuggingPriority(priority, for: .vertical)
+            }
         }
     }
     
     /// Describes the view's layout compression and hugging priorities.
-    struct LayoutCompressionOptions: Equatable {
+    enum LayoutCompressionOptions: Equatable {
         /// The priority with which a view resists being made smaller than its intrinsic width.
-        public var horizontalCompressionResistance: UILayoutPriority?
+        case horizontalCompressionResistance(UILayoutPriority)
         
         /// The priority with which a view resists being made larger than its intrinsic width.
-        public var horizontalHuggingPriority: UILayoutPriority?
+        case horizontalHuggingPriority(UILayoutPriority)
         
         /// The priority with which a view resists being made smaller than its intrinsic height.
-        public var verticalCompressionResistance: UILayoutPriority?
+        case verticalCompressionResistance(UILayoutPriority)
         
         /// The priority with which a view resists being made larger than its intrinsic height.
-        public var verticalHuggingPriority: UILayoutPriority?
-        
-        public init(
-            horizontalCompressionResistance: UILayoutPriority? = nil,
-            horizontalHugging: UILayoutPriority? = nil,
-            verticalCompressionResistance: UILayoutPriority? = nil,
-            verticalHugging: UILayoutPriority? = nil
-        ) {
-            self.horizontalCompressionResistance = horizontalCompressionResistance
-            self.horizontalHuggingPriority       = horizontalHugging
-            self.verticalCompressionResistance   = verticalCompressionResistance
-            self.verticalHuggingPriority         = verticalHugging
-        }
+        case verticalHuggingPriority(UILayoutPriority)
     }
 }
