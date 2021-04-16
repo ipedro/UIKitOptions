@@ -21,11 +21,14 @@ public extension UIScrollView {
         self.showsHorizontalScrollIndicator = options.showsHorizontalScrollIndicator
         self.indicatorStyle                 = options.indicatorStyle
         self.decelerationRate               = options.decelerationRate
+        self.keyboardDismissMode            = options.keyboardDismissMode
+        self.scrollsToTop                   = options.scrollsToTop
     }
     
     struct Options: Equatable {
         /// default UIEdgeInsetsZero. add additional scroll area around content
         public var contentInset: UIEdgeInsets
+        
         /// default NO. if YES, try to lock vertical or horizontal scrolling while dragging
         public var isDirectionalLockEnabled: Bool
 
@@ -56,18 +59,26 @@ public extension UIScrollView {
         /// A floating-point value that determines the rate of deceleration after the user lifts their finger.
         public var decelerationRate: UIScrollView.DecelerationRate
         
+        /// The manner in which the keyboard is dismissed when a drag begins in the scroll view.
+        public var keyboardDismissMode: UIScrollView.KeyboardDismissMode
+        
+        /// A Boolean value that controls whether the scroll-to-top gesture is enabled. default is YES.
+        var scrollsToTop: Bool
+        
         public init(
-            contentInset: UIEdgeInsets,
-            isDirectionalLockEnabled: Bool,
-            bounces: Bool,
-            alwaysBounceVertical: Bool,
-            alwaysBounceHorizontal: Bool,
-            isPagingEnabled: Bool,
-            isScrollEnabled: Bool,
-            showsVerticalScrollIndicator: Bool,
-            showsHorizontalScrollIndicator: Bool,
-            indicatorStyle: UIScrollView.IndicatorStyle,
-            decelerationRate: UIScrollView.DecelerationRate
+            contentInset: UIEdgeInsets = .zero,
+            isDirectionalLockEnabled: Bool = false,
+            bounces: Bool = true,
+            alwaysBounceVertical: Bool = false,
+            alwaysBounceHorizontal: Bool = false,
+            isPagingEnabled: Bool = false,
+            isScrollEnabled: Bool = true,
+            showsVerticalScrollIndicator: Bool = true,
+            showsHorizontalScrollIndicator: Bool = true,
+            indicatorStyle: UIScrollView.IndicatorStyle = .default,
+            decelerationRate: UIScrollView.DecelerationRate = .normal,
+            keyboardDismissMode: UIScrollView.KeyboardDismissMode = .none,
+            scrollsToTop: Bool = true
         ) {
             self.contentInset                   = contentInset
             self.isDirectionalLockEnabled       = isDirectionalLockEnabled
@@ -80,6 +91,8 @@ public extension UIScrollView {
             self.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator
             self.indicatorStyle                 = indicatorStyle
             self.decelerationRate               = decelerationRate
+            self.keyboardDismissMode            = keyboardDismissMode
+            self.scrollsToTop                   = scrollsToTop
         }
     }
 }
