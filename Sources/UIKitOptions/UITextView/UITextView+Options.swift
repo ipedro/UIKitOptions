@@ -103,7 +103,7 @@ public extension UITextView {
         ///   - dataDetectorTypes: The types of data that convert to tappable URLs in the text view.
         public init(
             fontStyle: UIFont.TextStyle = .body,
-            fontTraits: UIFontDescriptor.SymbolicTraits,
+            fontTraits: UIFontDescriptor.SymbolicTraits = [],
             textColor: UIColor? = nil,
             alignment: NSTextAlignment = .natural,
             isEditable: Bool = false,
