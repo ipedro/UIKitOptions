@@ -70,7 +70,7 @@ public extension UILabel {
             font: UIFont? = nil,
             textColor: UIColor? = nil,
             textAlignment: NSTextAlignment = .natural,
-            numberOfLines: Int = 0,
+            numberOfLines: Int = 1,
             minimumScaleFactor: CGFloat = 0,
             adjustsFontSizeToFitWidth: Bool = false,
             preferredMaxLayoutWidth: CGFloat? = nil,
