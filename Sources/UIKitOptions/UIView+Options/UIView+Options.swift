@@ -93,10 +93,6 @@ public extension UIView {
 
 public extension UIView.Options {
     
-    static func layoutCompression(_ options: UIView.LayoutCompressionOptions) -> UIView.Options {
-        UIView.Options(layoutCompression: options)
-    }
-    
     static func layoutCompression(
         horizontalCompressionResistance: UILayoutPriority? = nil,
         horizontalHugging: UILayoutPriority? = nil,
@@ -104,7 +100,7 @@ public extension UIView.Options {
         verticalHugging: UILayoutPriority? = nil
     ) -> UIView.Options {
         UIView.Options(
-            layoutCompression: UIView.LayoutCompressionOptions(
+            layoutCompression: .init(
                 horizontalCompressionResistance: horizontalCompressionResistance,
                 horizontalHugging: horizontalHugging,
                 verticalCompressionResistance: verticalCompressionResistance,
