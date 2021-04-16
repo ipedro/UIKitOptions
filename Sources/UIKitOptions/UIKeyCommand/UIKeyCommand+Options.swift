@@ -1,6 +1,6 @@
 //
 //  UIKeyCommand+Options.swift
-//  UIKeyCommandOptions
+//  UIKitOptions
 //
 //  Created by Pedro on 11.04.21.
 //

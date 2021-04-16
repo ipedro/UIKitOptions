@@ -1,7 +1,7 @@
 import XCTest
 
-import UIKeyCommandOptionsTests
+import UIKitOptionsTests
 
 var tests = [XCTestCaseEntry]()
-tests += UIKeyCommandOptionsTests.allTests()
+tests += UIKitOptionsTests.allTests()
 XCTMain(tests)
