@@ -19,8 +19,11 @@ public extension UIStackView {
     func apply(stackViewOptions: Options) {
         stackViewOptions.forEach { option in
             switch option {
-            case let .axis(axis):
-                self.axis = axis
+            case .verticalAxis:
+                self.axis = .vertical
+                
+            case .horizontalAxis:
+                self.axis = .horizontal
                 
             case let .spacing(spacing):
                 self.spacing = spacing
@@ -61,7 +64,10 @@ public extension UIStackView {
         }
         
         /// The axis along which the arranged views are laid out.
-        case axis(NSLayoutConstraint.Axis)
+        case verticalAxis
+        
+        /// The axis along which the arranged views are laid out.
+        case horizontalAxis
         
         /// The distance in points between the adjacent edges of the stack view’s arranged views.
         case spacing(CGFloat)
