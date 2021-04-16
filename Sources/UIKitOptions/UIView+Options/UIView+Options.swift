@@ -101,19 +101,12 @@ public extension UIView {
 
 public extension UIView.Options {
     
-    static func layoutCompression(
-        horizontalCompressionResistance: UILayoutPriority? = nil,
-        horizontalHugging: UILayoutPriority? = nil,
-        verticalCompressionResistance: UILayoutPriority? = nil,
-        verticalHugging: UILayoutPriority? = nil
-    ) -> UIView.Options {
-        UIView.Options(
-            layoutCompression: .init(
-                horizontalCompressionResistance: horizontalCompressionResistance,
-                horizontalHugging: horizontalHugging,
-                verticalCompressionResistance: verticalCompressionResistance,
-                verticalHugging: verticalHugging
-            )
-        )
+    static func layoutCompression(_ layoutCompression: UIView.LayoutCompressionOptions) -> UIView.Options {
+        UIView.Options(layoutCompression: layoutCompression)
     }
+    
+    static func layerOptions(_ layerOptions: CALayer.Options) -> UIView.Options {
+        UIView.Options(layerOptions: layerOptions)
+    }
+    
 }
