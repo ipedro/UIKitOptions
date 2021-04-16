@@ -10,6 +10,8 @@ import UIKit
 public extension UIStackView {
     convenience init(_ options: Option...) {
         self.init()
+        
+        isLayoutMarginsRelativeArrangement = true
         apply(stackViewOptions: options)
     }
     

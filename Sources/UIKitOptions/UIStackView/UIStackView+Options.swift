@@ -30,7 +30,6 @@ public extension UIStackView {
                 
             case let .layoutMargins(layoutMargins):
                 self.directionalLayoutMargins = layoutMargins
-                self.isLayoutMarginsRelativeArrangement = true
                 
             case let .alignment(alignment):
                 self.alignment = alignment
