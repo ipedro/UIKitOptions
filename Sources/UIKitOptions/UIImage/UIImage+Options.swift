@@ -8,11 +8,11 @@
 import UIKit
 
 extension UIImage {
-    func with(imageOptions: UIImage.Option...) -> UIImage {
-        with(imageOptions: imageOptions)
+    func withOptions(_ imageOptions: UIImage.Option...) -> UIImage {
+        withOptions(imageOptions)
     }
     
-    func with(imageOptions: UIImage.Options) -> UIImage {
+    func withOptions(_ imageOptions: UIImage.Options) -> UIImage {
         var newImage = self
         
         imageOptions.forEach { option in

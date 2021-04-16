@@ -28,6 +28,12 @@ public extension UILabel {
             case let .textColor(textColor):
                 self.textColor = textColor
                 
+            case let .text(text):
+                self.text = text
+                
+            case let .attributedText(attributedText):
+                self.attributedText = attributedText
+                                
             case let .textAlignment(textAlignment):
                 self.textAlignment = textAlignment
                 
@@ -45,7 +51,6 @@ public extension UILabel {
                 
             case let .preferredMaxLayoutWidth(preferredMaxLayoutWidth):
                 self.preferredMaxLayoutWidth = preferredMaxLayoutWidth
-                
             case let .viewOptions(viewOptions):
                 apply(viewOptions: viewOptions)
             }
@@ -56,6 +61,10 @@ public extension UILabel {
     
     /// An object that defines the appearance of a UILabel.
     enum Option: Equatable {
+        case text(String?)
+        
+        case attributedText(NSAttributedString?)
+        
         /// The font of the text.
         case font(UIFont)
         

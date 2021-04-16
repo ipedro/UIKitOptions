@@ -35,12 +35,14 @@ public extension UIStackView {
             case let .distribution(distribution):
                 self.distribution = distribution
                 
+            case let .arrangedSubviews(views):
+                addArrangedSubviews(views)
+                
             case let .isLayoutMarginsRelativeArrangement(isLayoutMarginsRelativeArrangement):
                 self.isLayoutMarginsRelativeArrangement = isLayoutMarginsRelativeArrangement
                 
             case let .viewOptions(viewOptions):
                 apply(viewOptions: viewOptions)
-                
             }
         }
     }
@@ -49,6 +51,15 @@ public extension UIStackView {
     
     /// An object that defines the appearance of a stack view.
     enum Option: Equatable {
+        
+        /// The list of views arranged by the stack view.
+        case arrangedSubviews([UIView])
+        
+        /// The list of views arranged by the stack view.
+        public static func arrangedSubviews(_ views: UIView...) -> Self {
+            .arrangedSubviews(views)
+        }
+        
         /// The axis along which the arranged views are laid out.
         case axis(NSLayoutConstraint.Axis)
         

@@ -9,9 +9,8 @@ import UIKit
 
 public extension UIScrollView {
     
-    convenience init(frame: CGRect = .zero, options: Option...) {
-        self.init(frame: frame)
-        
+    convenience init(_ options: Option...) {
+        self.init()
         apply(scrollViewOptions: options)
     }
 }

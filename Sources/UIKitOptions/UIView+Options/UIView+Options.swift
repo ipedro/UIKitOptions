@@ -45,6 +45,9 @@ public extension UIView {
                 
             case let .layerOptions(layerOptions):
                 layer.apply(layerOptions: layerOptions)
+            
+            case let .frame(frame):
+                self.frame = frame
             }
         }
     }
@@ -53,11 +56,14 @@ public extension UIView {
     
     /// An object that defines the appearance of a view.
     enum Option: Equatable {
+        /// The frame rectangle, which describes the view’s location and size in its superview’s coordinate system.
+        case frame(CGRect)
+        
         /// The view’s background color.
-        case backgroundColor(UIColor)
+        case backgroundColor(UIColor?)
         
         /// A flag used to determine how a view lays out its content when its bounds change.
-        case contentMode(UIView.ContentMode)
+        case contentMode(ContentMode)
         
         /// A Boolean value that determines whether subviews are confined to the bounds of the view.
         case clipsToBounds(Bool)
@@ -70,6 +76,9 @@ public extension UIView {
         
         /// The view’s alpha value.
         case alpha(CGFloat)
+        
+        /// A Boolean value that determines whether user events are ignored and removed from the event queue.
+        case isUserInteractionEnabled(Bool)
         
         /// Describes the view's layout compression and hugging priorities.
         case layoutCompression(LayoutCompressionOptions)
@@ -86,8 +95,5 @@ public extension UIView {
         public static func layerOptions(_ layerOptions: CALayer.Option...) -> Self {
             .layerOptions(layerOptions)
         }
-        
-        /// A Boolean value that determines whether user events are ignored and removed from the event queue.
-        case isUserInteractionEnabled(Bool)
     }
 }

@@ -22,7 +22,7 @@ public extension UITextView {
             case let .font(font):
                 self.font = font
                 
-            case let .fontStyle(textStyle, traits):
+            case let .textStyle(textStyle, traits):
                 self.font = .preferredFont(forTextStyle: textStyle, with: traits)
                 
             case let .textColor(textColor):
@@ -43,6 +43,12 @@ public extension UITextView {
             case let .dataDetectorTypes(dataDetectorTypes):
                 self.dataDetectorTypes = dataDetectorTypes
                 
+            case let .text(text):
+                self.text = text
+                
+            case let .attributedText(attributedText):
+                self.attributedText = attributedText
+                                
             case let .viewOptions(viewOptions):
                 apply(viewOptions: viewOptions)
                 
@@ -56,11 +62,17 @@ public extension UITextView {
     
     /// An object that defines the appearance of a text view.
     enum Option {
+        /// The text that the text view displays.
+        case text(String?)
+        
+        /// The styled text that the text view displays.
+        case attributedText(NSAttributedString?)
+        
         /// The font of the text.
-        case font(UIFont)
+        case font(UIFont?)
         
         /// Constants that describe the preferred styles for fonts.
-        case fontStyle(_ style: UIFont.TextStyle, traits: UIFontDescriptor.SymbolicTraits = [])
+        case textStyle(_ style: UIFont.TextStyle, traits: UIFontDescriptor.SymbolicTraits = [])
         
         /// The color of the text.
         case textColor(UIColor)
