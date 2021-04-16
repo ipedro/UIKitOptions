@@ -17,6 +17,7 @@ public extension UIView {
         layer.cornerRadius = options.cornerRadius
         clipsToBounds      = options.clipsToBounds
         tintColor          = options.tintColor
+        alpha              = options.alpha
         
         if let isUserInteractionEnabled = options.isUserInteractionEnabled {
             self.isUserInteractionEnabled = isUserInteractionEnabled
@@ -46,6 +47,9 @@ public extension UIView {
         /// The view's tint color.
         public var tintColor: UIColor?
         
+        /// The view’s alpha value.
+        public var alpha: CGFloat
+        
         /// Describes the view's layout compression and hugging priorities.
         public var layoutCompression: LayoutCompressionOptions?
         
@@ -62,6 +66,7 @@ public extension UIView {
         ///   - tintColor: The view's tint color.
         ///   - isUserInteractionEnabled: A Boolean value that determines whether user events are ignored and removed from the event queue.
         ///   - layoutCompression: Describes the view's layout compression and hugging priorities.
+        ///   - alpha: The view’s alpha value.
         public init(
             backgroundColor: UIColor? = .clear,
             contentMode: UIView.ContentMode = .scaleToFill,
@@ -70,6 +75,7 @@ public extension UIView {
             isHidden: Bool = false,
             tintColor: UIColor? = nil,
             isUserInteractionEnabled: Bool? = nil,
+            alpha: CGFloat = 1.0,
             layoutCompression: LayoutCompressionOptions? = nil
         ) {
             self.backgroundColor          = backgroundColor
@@ -79,6 +85,7 @@ public extension UIView {
             self.isHidden                 = isHidden
             self.tintColor                = tintColor
             self.isUserInteractionEnabled = isUserInteractionEnabled
+            self.alpha                    = alpha
             self.layoutCompression        = layoutCompression
         }
     }
