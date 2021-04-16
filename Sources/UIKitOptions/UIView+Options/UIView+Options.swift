@@ -63,7 +63,7 @@ public extension UIView {
         ///   - isUserInteractionEnabled: A Boolean value that determines whether user events are ignored and removed from the event queue.
         ///   - layoutCompression: Describes the view's layout compression and hugging priorities.
         public init(
-            backgroundColor: UIColor? = nil,
+            backgroundColor: UIColor? = .clear,
             contentMode: UIView.ContentMode = .scaleToFill,
             cornerRadius: CGFloat = .zero,
             clipsToBounds: Bool = false,

@@ -16,7 +16,7 @@ public extension UIView {
     
     convenience init(
         frame: CGRect = .zero,
-        backgroundColor: UIColor? = nil,
+        backgroundColor: UIColor? = .clear,
         contentMode: UIView.ContentMode = .scaleToFill,
         cornerRadius: CGFloat = .zero,
         clipsToBounds: Bool = false,
