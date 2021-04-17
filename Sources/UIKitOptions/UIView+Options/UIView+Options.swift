@@ -79,6 +79,12 @@ public extension UIView {
             case let .semanticContentAttribute(semanticContentAttribute):
                 self.semanticContentAttribute = semanticContentAttribute
                 
+            case let .isOpaque(isOpaque):
+                self.isOpaque = isOpaque
+                
+            case let .translatesAutoresizingMaskIntoConstraints(translatesAutoresizingMaskIntoConstraints):
+                self.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
+                
             #if swift(>=5.3)
             case let .focusGroupIdentifier(focusGroupIdentifier):
                 if #available(iOS 14.0, *) {
@@ -126,8 +132,14 @@ public extension UIView {
         /// A Boolean value that determines whether the view is hidden.
         case isHidden(Bool)
         
+        /// A Boolean value that determines whether the view is opaque.
+        case isOpaque(Bool)
+        
         /// The view's tint color.
         case tintColor(UIColor)
+        
+        /// A Boolean value that determines whether the view’s autoresizing mask is translated into Auto Layout constraints.
+        case translatesAutoresizingMaskIntoConstraints(Bool)
         
         /// The first non-default tint adjustment mode value in the view’s hierarchy, ascending from and starting with the view itself.
         case tintAdjustmentMode(UIView.TintAdjustmentMode)
