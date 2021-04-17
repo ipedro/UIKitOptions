@@ -233,14 +233,24 @@ public extension UITableView {
         case scrollViewOptions(UIScrollView.Options)
         
         /// The options for the table view.
+        case viewOptions(UIView.Options)
+        
+        // MARK: - Convenience
+        
+        /// The options for the table view.
         public static func scrollViewOptions(_ scrollViewOptions: UIScrollView.Option...) -> Self {
             .scrollViewOptions(scrollViewOptions)
         }
         
         /// The options for the table view.
-        case viewOptions(UIView.Options)
+        public static func keyboardDismissMode(_ keyboardDismissMode: UIScrollView.KeyboardDismissMode) -> Self {
+            .scrollViewOptions(.keyboardDismissMode(keyboardDismissMode))
+        }
         
-        // MARK: - Convenience
+        /// The options for the table view.
+        public static func indicatorStyle(_ indicatorStyle: UIScrollView.IndicatorStyle) -> Self {
+            .scrollViewOptions(.indicatorStyle(indicatorStyle))
+        }
         
         /// Sets automatic height for section headers in the table view.
         public static var automaticSectionFooterHeight: Self {
