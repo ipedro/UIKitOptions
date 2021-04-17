@@ -22,9 +22,6 @@ public extension UILabel {
             case let .font(font):
                 self.font = font
                 
-            case let .textStyle(textStyle, traits):
-                self.font = .preferredFont(forTextStyle: textStyle, with: traits)
-                
             case let .textColor(textColor):
                 self.textColor = textColor
                 
@@ -68,9 +65,6 @@ public extension UILabel {
         /// The font of the text.
         case font(UIFont)
         
-        /// Constants that describe the preferred styles for fonts.
-        case textStyle(_ style: UIFont.TextStyle, traits: UIFontDescriptor.SymbolicTraits = [])
-        
         /// The color of the text.
         case textColor(UIColor)
         
@@ -94,6 +88,13 @@ public extension UILabel {
         
         /// The appearance options of the view.
         case viewOptions(UIView.Options)
+        
+        // MARK: - Convenience
+        
+        /// Constants that describe the preferred styles for fonts.
+        public static func textStyle(_ style: UIFont.TextStyle, traits: UIFontDescriptor.SymbolicTraits = []) -> Self {
+            .font(UIFont.preferredFont(forTextStyle: style, with: traits))
+        }
         
         /// The appearance options of the view.
         public static func viewOptions(_ viewOptions: UIView.Option...) -> Self {

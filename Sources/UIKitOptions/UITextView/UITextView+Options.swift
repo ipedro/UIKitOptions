@@ -7,6 +7,7 @@
 
 import UIKit
 
+@available(iOS 11.1, *)
 public extension UITextView {
     /// Applies the appeareance options to the text view instance.
     /// - Parameter textViewOptions: The text view appearance options.
@@ -21,9 +22,6 @@ public extension UITextView {
             switch option {
             case let .font(font):
                 self.font = font
-                
-            case let .textStyle(textStyle, traits):
-                self.font = .preferredFont(forTextStyle: textStyle, with: traits)
                 
             case let .textColor(textColor):
                 self.textColor = textColor
@@ -71,9 +69,6 @@ public extension UITextView {
         /// The font of the text.
         case font(UIFont?)
         
-        /// Constants that describe the preferred styles for fonts.
-        case textStyle(_ style: UIFont.TextStyle, traits: UIFontDescriptor.SymbolicTraits = [])
-        
         /// The color of the text.
         case textColor(UIColor)
         
@@ -97,6 +92,13 @@ public extension UITextView {
         
         /// The options of the scroll view.
         case scrollViewOptions(UIScrollView.Options)
+        
+        // MARK: - Convenience
+        
+        /// Constants that describe the preferred styles for fonts.
+        public static func textStyle(_ style: UIFont.TextStyle, traits: UIFontDescriptor.SymbolicTraits = []) -> Self {
+            .font(UIFont.preferredFont(forTextStyle: style, with: traits))
+        }
         
         /// The options of the scroll view.
         public static func scrollViewOptions(_ scrollViewOptions: UIScrollView.Option...) -> Self {

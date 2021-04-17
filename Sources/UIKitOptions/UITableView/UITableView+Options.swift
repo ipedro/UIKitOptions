@@ -7,6 +7,7 @@
 
 import UIKit
 
+@available(iOS 11.1, *)
 public extension UITableView {
     /// Applies the appeareance options to the table view instance.
     /// - Parameter tableViewOptions: The table view appearance options.

@@ -26,10 +26,10 @@ public extension CALayer {
                 self.borderWidth = borderWidth
                 
             case let .borderColor(borderColor):
-                self.borderColor = borderColor.cgColor
+                self.borderColor = borderColor
                 
             case let .backgroundColor(backgroundColor):
-                self.backgroundColor = backgroundColor.cgColor
+                self.backgroundColor = backgroundColor
                 
             case let .cornerRadius(cornerRadius):
                 self.cornerRadius = cornerRadius
@@ -44,7 +44,7 @@ public extension CALayer {
                 self.shadowOffset = shadowOffset
                 
             case let .shadowColor(shadowColor):
-                self.shadowColor = shadowColor.cgColor
+                self.shadowColor = shadowColor
                 
             case let .shadowRadius(shadowRadius):
                 self.shadowRadius = shadowRadius
@@ -81,10 +81,10 @@ public extension CALayer {
         case borderWidth(CGFloat)
         
         /// The color of the layer’s border. Animatable.
-        case borderColor(UIColor)
+        case borderColor(CGColor)
         
         ///The background color of the receiver. Animatable.
-        case backgroundColor(UIColor)
+        case backgroundColor(CGColor)
         
         /// The radius to use when drawing rounded corners for the layer’s background. Animatable.
         case cornerRadius(CGFloat)
@@ -99,7 +99,7 @@ public extension CALayer {
         case shadowOffset(CGSize)
         
         /// The color of the layer’s shadow. Animatable.
-        case shadowColor(UIColor)
+        case shadowColor(CGColor)
         
         /// The blur radius (in points) used to render the layer’s shadow. Animatable.
         case shadowRadius(CGFloat)
@@ -121,5 +121,18 @@ public extension CALayer {
         
         /// The scale at which to rasterize content, relative to the coordinate space of the layer. Animatable
         case rasterizationScale(CGFloat)
+        
+        // MARK: - Convenience
+        public static func borderColor(_ color: UIColor) -> Self {
+            .borderColor(color.cgColor)
+        }
+        
+        public static func backgroundColor(_ color: UIColor) -> Self {
+            .backgroundColor(color.cgColor)
+        }
+        
+        public static func shadowColor(_ color: UIColor) -> Self {
+            .shadowColor(color.cgColor)
+        }
     }
 }

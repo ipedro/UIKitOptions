@@ -7,11 +7,14 @@
 
 import UIKit
 
+@available(iOS 11.1, *)
 public extension UITableView {
-    // must specify style at creation. -initWithFrame: calls this with UITableViewStylePlain
     convenience init(_ style: UITableView.Style = .plain, _ options: Option...) {
+        self.init(style, options)
+    }
+    
+    convenience init(_ style: UITableView.Style = .plain, _ options: Options) {
         self.init(frame: .zero, style: style)
-        
         apply(tableViewOptions: options)
     }
 }

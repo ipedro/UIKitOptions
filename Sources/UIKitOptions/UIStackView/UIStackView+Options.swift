@@ -24,9 +24,6 @@ public extension UIStackView {
             case let .spacing(spacing):
                 self.spacing = spacing
                 
-            case let .layoutMargins(layoutMargins):
-                self.directionalLayoutMargins = layoutMargins
-                
             case let .alignment(alignment):
                 self.alignment = alignment.rawValue
                 
@@ -59,16 +56,8 @@ public extension UIStackView {
         /// The list of views arranged by the stack view.
         case arrangedSubviews([UIView])
         
-        /// The list of views arranged by the stack view.
-        public static func arrangedSubviews(_ views: UIView...) -> Self {
-            .arrangedSubviews(views)
-        }
-        
         /// The distance in points between the adjacent edges of the stack view’s arranged views.
         case spacing(CGFloat)
-        
-        /// The optional margins of the UIStackView contents.
-        case layoutMargins(NSDirectionalEdgeInsets)
         
         /// The alignment of the arranged subviews perpendicular to the stack view’s axis.
         case alignment(Alignment)
@@ -81,6 +70,17 @@ public extension UIStackView {
         
         /// The appearance options of the stack view.
         case viewOptions(UIView.Options)
+        
+        // MARK: - Convenience
+        
+        /// The list of views arranged by the stack view.
+        public static func arrangedSubviews(_ views: UIView...) -> Self {
+            .arrangedSubviews(views)
+        }
+        
+        public static func spacing<T: RawRepresentable>(_ spacing: T) -> Self where T.RawValue == CGFloat {
+            .spacing(spacing.rawValue)
+        }
         
         /// The appearance options of the stack view.
         public static func viewOptions(_ viewOptions: UIView.Option...) -> Self {
@@ -96,6 +96,19 @@ public extension UIStackView {
         public static func layoutCompression(_ options: LayoutCompressionOption...) -> Self {
             .viewOptions(.layoutCompression(options))
         }
+        /// The optional margins of the stack view contents.
+        public static func directionalLayoutMargins(_ insets: NSDirectionalEdgeInsets) -> Self {
+            .viewOptions(.directionalLayoutMargins(insets))
+        }
+        
+        /// The optional margins of the stack view contents.
+        public static func directionalLayoutMargins(top: CGFloat = .zero, leading: CGFloat = .zero, bottom: CGFloat = .zero, trailing: CGFloat = .zero) -> Self {
+            .directionalLayoutMargins(NSDirectionalEdgeInsets(top: top, leading: leading, bottom: bottom, trailing: trailing))
+        }
+        
+        /// The optional margins of the stack view contents.
+        public static func directionalLayoutMargins<T: RawRepresentable>(top: T? = nil, leading: T? = nil, bottom: T? = nil, trailing: T? = nil) -> Self where T.RawValue == CGFloat {
+            .directionalLayoutMargins(NSDirectionalEdgeInsets(top: top, leading: leading, bottom: bottom, trailing: trailing))
+        }
     }
 }
-

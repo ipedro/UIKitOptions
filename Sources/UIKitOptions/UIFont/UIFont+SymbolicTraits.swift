@@ -27,9 +27,7 @@ public extension UIFont {
     func monoSpace() -> UIFont {
         withTraits(.traitMonoSpace)
     }
-}
-
-public extension UIFont {
+    
     func withTraits(_ symbolicTraits: UIFontDescriptor.SymbolicTraits) -> UIFont {
         guard let descriptor = fontDescriptor.withSymbolicTraits(symbolicTraits) else {
             assertionFailure("Could not resolve the specified symbolic traits: \(symbolicTraits)")

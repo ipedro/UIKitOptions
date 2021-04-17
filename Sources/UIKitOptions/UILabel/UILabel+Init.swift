@@ -7,10 +7,12 @@
 
 import UIKit
 
-// MARK: - UILabel Extension
-
 public extension UILabel {
     convenience init(_ options: Option...) {
+        self.init(options)
+    }
+    
+    convenience init(_ options: Options) {
         self.init()
         apply(labelOptions: options)
     }

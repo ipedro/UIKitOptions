@@ -7,10 +7,13 @@
 
 import UIKit
 
-// MARK: - UITextView Extension
-
+@available(iOS 11.1, *)
 public extension UITextView {
     convenience init(_ options: Option...) {
+        self.init(options)
+    }
+    
+    convenience init(_ options: Options) {
         self.init()
         apply(textViewOptions: options)
     }

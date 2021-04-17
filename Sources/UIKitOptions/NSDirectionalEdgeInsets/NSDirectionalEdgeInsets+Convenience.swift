@@ -9,18 +9,27 @@ import UIKit
 
 public extension NSDirectionalEdgeInsets {
     
-    static func insets(
-        top: CGFloat = .zero,
-        leading: CGFloat = .zero,
-        bottom: CGFloat = .zero,
-        trailing: CGFloat = .zero
-    ) -> NSDirectionalEdgeInsets {
-        self.init(top: top, leading: leading, bottom: bottom, trailing: trailing)
+    init(top: CGFloat?, leading: CGFloat?, bottom: CGFloat?, trailing: CGFloat?) {
+        self.init(
+            top: top ?? .zero,
+            leading: leading ?? .zero,
+            bottom: bottom ?? .zero,
+            trailing: trailing ?? .zero
+        )
     }
     
-    var vertical: CGFloat { top + bottom }
+    init<T: RawRepresentable>(top: T?, leading: T?, bottom: T?, trailing: T?) where T.RawValue == CGFloat {
+        self.init(
+            top: top?.rawValue ?? .zero,
+            leading: leading?.rawValue ?? .zero,
+            bottom: bottom?.rawValue ?? .zero,
+            trailing: trailing?.rawValue ?? .zero
+        )
+    }
     
-    var horizontal: CGFloat { leading + trailing }
+    var verticalInsets: CGFloat { top + bottom }
+    
+    var horizontalInsets: CGFloat { leading + trailing }
     
     func edgeInsets() -> UIEdgeInsets {
         UIEdgeInsets(top: top, left: leading, bottom: bottom, right: trailing)
