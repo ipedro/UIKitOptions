@@ -10,44 +10,22 @@ import UIKit
 public extension UIStackView {
     convenience init(_ options: Option...) {
         self.init()
-        
-        isLayoutMarginsRelativeArrangement = true
         apply(stackViewOptions: options)
     }
     
-//    static func vertical(
-//        arrangedSubviews: [UIView] = [],
-//        spacing: CGFloat = .zero,
-//        layoutMargins: NSDirectionalEdgeInsets = .zero,
-//        alignment: VerticalAlignment = .fill,
-//        distribution: UIStackView.Distribution = .fill
-//    ) -> UIStackView {
-//        UIStackView(
-//            arrangedSubviews: arrangedSubviews,
-//            options:
-//                .axis(.vertical),
-//                .spacing(spacing),
-//                .layoutMargins(layoutMargins),
-//                .alignment(alignment.rawValue),
-//                .distribution(distribution)
-//        )
-//    }
-//
-//    static func horizontal(
-//        arrangedSubviews: [UIView] = [],
-//        spacing: CGFloat = .zero,
-//        layoutMargins: NSDirectionalEdgeInsets = .zero,
-//        alignment: HorizontalAlignment = .fill,
-//        distribution: UIStackView.Distribution = .fill
-//    ) -> UIStackView {
-//        UIStackView(
-//            arrangedSubviews: arrangedSubviews,
-//            options:
-//                .axis(.horizontal),
-//                .spacing(spacing),
-//                .layoutMargins(layoutMargins),
-//                .alignment(alignment.rawValue),
-//                .distribution(distribution)
-//        )
-//    }
+    static func vertical(_ options: Option...) -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.apply(stackViewOptions: options)
+        
+        return stackView
+    }
+    
+    static func horizontal(_ options: Option...) -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.apply(stackViewOptions: options)
+        
+        return stackView
+    }
 }

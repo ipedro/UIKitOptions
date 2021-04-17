@@ -9,13 +9,13 @@ import UIKit
 
 public extension UIView {
     /// Applies the appearance options to the view instance.
-    /// - Parameter options: The view appearance options.
+    /// - Parameter viewOptions: The view appearance options.
     func apply(viewOptions: Option...) {
         apply(viewOptions: viewOptions)
     }
     
     /// Applies the appearance options to the view instance.
-    /// - Parameter options: The view appearance options.
+    /// - Parameter viewOptions: The view appearance options.
     func apply(viewOptions: Options) {
         viewOptions.forEach { option in
             switch option {
@@ -41,7 +41,7 @@ public extension UIView {
                 self.isUserInteractionEnabled = isUserInteractionEnabled
                 
             case let .layoutCompression(layoutCompressionOptions):
-                self.applyOptions(layoutCompressionOptions)
+                self.apply(layoutCompressionOptions: layoutCompressionOptions)
                 
             case let .layerOptions(layerOptions):
                 layer.apply(layerOptions: layerOptions)
@@ -55,7 +55,7 @@ public extension UIView {
     typealias Options = [Option]
     
     /// An object that defines the appearance of a view.
-    enum Option: Equatable {
+    enum Option {
         /// The frame rectangle, which describes the view’s location and size in its superview’s coordinate system.
         case frame(CGRect)
         

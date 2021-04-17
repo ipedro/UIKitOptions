@@ -9,13 +9,13 @@ import UIKit
 
 public extension UITextView {
     /// Applies the appeareance options to the text view instance.
-    /// - Parameter options: The text view appearance options.
+    /// - Parameter textViewOptions: The text view appearance options.
     func apply(textViewOptions: Option...) {
         apply(textViewOptions: textViewOptions)
     }
         
     /// Applies the appeareance options to the text view instance.
-    /// - Parameter options: The text view appearance options.
+    /// - Parameter textViewOptions: The text view appearance options.
     func apply(textViewOptions: Options) {
         textViewOptions.forEach { option in
             switch option {

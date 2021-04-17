@@ -51,10 +51,10 @@ public extension UIImageView {
         case animationDuration(TimeInterval)
         case animationRepeatCount(Int)
         
-        /// The appearance options of the stack view.
+        /// The options for the stack view.
         case viewOptions(UIView.Options)
         
-        /// The appearance options of the stack view.
+        /// The options for the stack view.
         public static func viewOptions(_ viewOptions: UIView.Option...) -> Self {
             .viewOptions(viewOptions)
         }

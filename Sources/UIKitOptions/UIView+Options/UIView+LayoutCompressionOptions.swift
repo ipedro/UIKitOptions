@@ -9,15 +9,15 @@ import UIKit
 
 public extension UIView {
     /// Applies the layout compression options to the view instance.
-    /// - Parameter options: The view layout compresison options.
-    func applyOptions(_ options: LayoutCompressionOption...) {
-        applyOptions(options)
+    /// - Parameter layoutCompressionOptions: The view layout compresison options.
+    func apply(layoutCompressionOptions: LayoutCompressionOption...) {
+        apply(layoutCompressionOptions: layoutCompressionOptions)
     }
     
     /// Applies the layout compression options to the view instance.
-    /// - Parameter options: The view layout compresison options.
-    func applyOptions(_ options: LayoutCompressionOptions) {
-        options.forEach { option in
+    /// - Parameter layoutCompressionOptions: The view layout compresison options.
+    func apply(layoutCompressionOptions: LayoutCompressionOptions) {
+        layoutCompressionOptions.forEach { option in
             switch option {
             case let .compressionResistance(priority, for: axis):
                 setContentCompressionResistancePriority(priority, for: axis)
