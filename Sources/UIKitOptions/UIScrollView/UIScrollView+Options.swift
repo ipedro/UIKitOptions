@@ -191,8 +191,8 @@ public extension UIScrollView {
         case viewOptions(UIView.Options)
         
         /// The appearance options of the view.
-        public static func viewOptions(_ viewOptions: UIView.Option...) -> Self {
-            .viewOptions(viewOptions)
+        public static func viewOptions(_ options: UIView.Option...) -> Self {
+            .viewOptions(options)
         }
         
         /// Describes the layer's appearance.

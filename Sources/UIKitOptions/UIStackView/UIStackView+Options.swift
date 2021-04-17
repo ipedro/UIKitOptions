@@ -83,32 +83,43 @@ public extension UIStackView {
         }
         
         /// The appearance options of the stack view.
-        public static func viewOptions(_ viewOptions: UIView.Option...) -> Self {
-            .viewOptions(viewOptions)
+        public static func viewOptions(_ options: UIView.Option...) -> Self {
+            .viewOptions(options)
         }
         
         /// Describes the stack view layer's appearance.
-        public static func layerOptions(_ layerOptions: CALayer.Option...) -> Self {
-            .viewOptions(.layerOptions(layerOptions))
+        public static func layerOptions(_ options: CALayer.Option...) -> Self {
+            .viewOptions(.layerOptions(options))
         }
         
         /// Describes the stack view's layout compression and hugging priorities.
         public static func layoutCompression(_ options: LayoutCompressionOption...) -> Self {
             .viewOptions(.layoutCompression(options))
         }
-        /// The optional margins of the stack view contents.
+        
+        /// The default spacing to use when laying out content in a view, taking into account the current language direction.
         public static func directionalLayoutMargins(_ insets: NSDirectionalEdgeInsets) -> Self {
             .viewOptions(.directionalLayoutMargins(insets))
         }
         
-        /// The optional margins of the stack view contents.
+        /// The default spacing to use when laying out content in a view, taking into account the current language direction.
         public static func directionalLayoutMargins(top: CGFloat = .zero, leading: CGFloat = .zero, bottom: CGFloat = .zero, trailing: CGFloat = .zero) -> Self {
             .directionalLayoutMargins(NSDirectionalEdgeInsets(top: top, leading: leading, bottom: bottom, trailing: trailing))
         }
         
-        /// The optional margins of the stack view contents.
+        /// The default spacing to use when laying out content in a view, taking into account the current language direction.
+        public static func directionalLayoutMargins(horizontal: CGFloat = .zero, vertical: CGFloat = .zero) -> Self {
+            .directionalLayoutMargins(top: vertical, leading: horizontal, bottom: vertical, trailing: horizontal)
+        }
+        
+        /// The default spacing to use when laying out content in a view, taking into account the current language direction.
         public static func directionalLayoutMargins<T: RawRepresentable>(top: T? = nil, leading: T? = nil, bottom: T? = nil, trailing: T? = nil) -> Self where T.RawValue == CGFloat {
-            .directionalLayoutMargins(NSDirectionalEdgeInsets(top: top, leading: leading, bottom: bottom, trailing: trailing))
+            .directionalLayoutMargins(top: top?.rawValue ?? .zero, leading: leading?.rawValue ?? .zero, bottom: bottom?.rawValue ?? .zero, trailing: trailing?.rawValue ?? .zero)
+        }
+        
+        /// The default spacing to use when laying out content in a view, taking into account the current language direction.
+        public static func directionalLayoutMargins<T: RawRepresentable>(horizontal: T? = nil, vertical: T? = nil) -> Self where T.RawValue == CGFloat {
+            .directionalLayoutMargins(top: vertical?.rawValue ?? .zero, leading: horizontal?.rawValue ?? .zero, bottom: vertical?.rawValue ?? .zero, trailing: horizontal?.rawValue ?? .zero)
         }
     }
 }

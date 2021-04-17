@@ -57,13 +57,13 @@ public extension UIImageView {
         // MARK: - Convenience
         
         /// The options for the stack view.
-        public static func viewOptions(_ viewOptions: UIView.Option...) -> Self {
-            .viewOptions(viewOptions)
+        public static func viewOptions(_ options: UIView.Option...) -> Self {
+            .viewOptions(options)
         }
         
         /// Describes the stack view layer's appearance.
-        public static func layerOptions(_ layerOptions: CALayer.Option...) -> Self {
-            .viewOptions(.layerOptions(layerOptions))
+        public static func layerOptions(_ options: CALayer.Option...) -> Self {
+            .viewOptions(.layerOptions(options))
         }
         
         /// Describes the stack view's layout compression and hugging priorities.

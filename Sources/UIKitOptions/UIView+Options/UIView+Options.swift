@@ -169,14 +169,24 @@ public extension UIView {
             .layoutCompression(options)
         }
         
-        /// The optional margins of the stack view contents.
+        /// The default spacing to use when laying out content in a view, taking into account the current language direction.
         public static func directionalLayoutMargins(top: CGFloat = .zero, leading: CGFloat = .zero, bottom: CGFloat = .zero, trailing: CGFloat = .zero) -> Self {
             .directionalLayoutMargins(NSDirectionalEdgeInsets(top: top, leading: leading, bottom: bottom, trailing: trailing))
         }
         
-        /// The optional margins of the stack view contents.
+        /// The default spacing to use when laying out content in a view, taking into account the current language direction.
+        public static func directionalLayoutMargins(horizontal: CGFloat = .zero, vertical: CGFloat = .zero) -> Self {
+            .directionalLayoutMargins(top: vertical, leading: horizontal, bottom: vertical, trailing: horizontal)
+        }
+        
+        /// The default spacing to use when laying out content in a view, taking into account the current language direction.
         public static func directionalLayoutMargins<T: RawRepresentable>(top: T? = nil, leading: T? = nil, bottom: T? = nil, trailing: T? = nil) -> Self where T.RawValue == CGFloat {
-            .directionalLayoutMargins(NSDirectionalEdgeInsets( top: top, leading: leading, bottom: bottom, trailing: trailing))
+            .directionalLayoutMargins(top: top?.rawValue ?? .zero, leading: leading?.rawValue ?? .zero, bottom: bottom?.rawValue ?? .zero, trailing: trailing?.rawValue ?? .zero)
+        }
+        
+        /// The default spacing to use when laying out content in a view, taking into account the current language direction.
+        public static func directionalLayoutMargins<T: RawRepresentable>(horizontal: T? = nil, vertical: T? = nil) -> Self where T.RawValue == CGFloat {
+            .directionalLayoutMargins(top: vertical?.rawValue ?? .zero, leading: horizontal?.rawValue ?? .zero, bottom: vertical?.rawValue ?? .zero, trailing: horizontal?.rawValue ?? .zero)
         }
         
     }

@@ -257,13 +257,13 @@ public extension UITableView {
         case viewOptions(UIView.Options)
         
         /// The options for the table view.
-        public static func viewOptions(_ viewOptions: UIView.Option...) -> Self {
-            .viewOptions(viewOptions)
+        public static func viewOptions(_ options: UIView.Option...) -> Self {
+            .viewOptions(options)
         }
         
         /// Describes the table view layer's appearance.
-        public static func layerOptions(_ layerOptions: CALayer.Option...) -> Self {
-            .viewOptions(.layerOptions(layerOptions))
+        public static func layerOptions(_ options: CALayer.Option...) -> Self {
+            .viewOptions(.layerOptions(options))
         }
         
         /// Describes the table view's layout compression and hugging priorities.
