@@ -63,7 +63,7 @@ public extension UIScrollView {
     
     typealias Options = [Option]
     
-    enum Option: Equatable {
+    enum Option {
         /// default UIEdgeInsetsZero. add additional scroll area around content
         case contentInset(UIEdgeInsets)
         

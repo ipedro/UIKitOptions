@@ -73,7 +73,7 @@ public extension CALayer {
     typealias Options = [Option]
     
     /// Describes the layer's appearance.
-    enum Option: Equatable {
+    enum Option {
         /// Defines the anchor point of the layer's bounds rectangle. Animatable.
         case anchorPoint(CGPoint)
         

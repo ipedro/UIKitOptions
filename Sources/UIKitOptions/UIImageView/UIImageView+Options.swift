@@ -42,7 +42,7 @@ public extension UIImageView {
 
     typealias Options = [Option]
     
-    enum Option: Equatable {
+    enum Option {
         case image(UIImage?)
         case highlightedImage(UIImage?)
         case isHighlighted(Bool)

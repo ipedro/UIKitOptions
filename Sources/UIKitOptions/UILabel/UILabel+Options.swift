@@ -60,7 +60,7 @@ public extension UILabel {
     typealias Options = [Option]
     
     /// An object that defines the appearance of a UILabel.
-    enum Option: Equatable {
+    enum Option {
         case text(String?)
         
         case attributedText(NSAttributedString?)

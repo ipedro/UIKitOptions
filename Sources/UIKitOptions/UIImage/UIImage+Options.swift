@@ -37,7 +37,7 @@ extension UIImage {
     
     typealias Options = [Option]
     
-    enum Option: Equatable {
+    enum Option {
         /// The rendering mode controls how UIKit uses color information to display an image.
         case renderingMode(RenderingMode)
         
