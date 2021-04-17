@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 11.1, *)
 public extension UIScrollView {
     
     func apply(scrollViewOptions: Option...) {
@@ -77,12 +76,6 @@ public extension UIScrollView {
                 
             case let .delegate(delegate):
                 self.delegate = delegate
-                
-            case let .verticalScrollIndicatorInsets(verticalScrollIndicatorInsets):
-                self.verticalScrollIndicatorInsets = verticalScrollIndicatorInsets
-                
-            case let .horizontalScrollIndicatorInsets(horizontalScrollIndicatorInsets):
-                self.horizontalScrollIndicatorInsets = horizontalScrollIndicatorInsets
                 
             case let .scrollIndicatorInsets(scrollIndicatorInsets):
                 self.scrollIndicatorInsets = scrollIndicatorInsets
@@ -159,12 +152,6 @@ public extension UIScrollView {
 
         /// The style of the scroll indicators.
         case indicatorStyle(UIScrollView.IndicatorStyle)
-        
-        /// The distance the scroll indicators are inset from the vettical edges of the scroll view.
-        case verticalScrollIndicatorInsets(UIEdgeInsets)
-        
-        /// The distance the scroll indicators are inset from the horizontal edges of the scroll view.
-        case horizontalScrollIndicatorInsets(UIEdgeInsets)
         
         /// The distance the scroll indicators are inset from the edge of the scroll view.
         case scrollIndicatorInsets(UIEdgeInsets)

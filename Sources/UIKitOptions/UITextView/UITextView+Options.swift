@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 11.1, *)
 public extension UITextView {
     /// Applies the appeareance options to the text view instance.
     /// - Parameter textViewOptions: The text view appearance options.

@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 11.1, *)
 public extension UITableView {
     convenience init(_ style: UITableView.Style = .plain, _ options: Option...) {
         self.init(style, options)

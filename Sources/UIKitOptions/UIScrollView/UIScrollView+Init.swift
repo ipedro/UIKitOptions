@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 11.1, *)
 public extension UIScrollView {
     convenience init(_ options: Option...) {
         self.init(options)
