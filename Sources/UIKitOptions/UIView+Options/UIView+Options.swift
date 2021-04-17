@@ -85,12 +85,16 @@ public extension UIView {
             case let .translatesAutoresizingMaskIntoConstraints(translatesAutoresizingMaskIntoConstraints):
                 self.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
                 
+            case let .accessibilityIdentifier(accessibilityIdentifier):
+                self.accessibilityIdentifier = accessibilityIdentifier
+            
             #if swift(>=5.3)
             case let .focusGroupIdentifier(focusGroupIdentifier):
                 if #available(iOS 14.0, *) {
                     self.focusGroupIdentifier = focusGroupIdentifier
                 }
             #endif
+            
             }
         }
     }
@@ -152,6 +156,9 @@ public extension UIView {
         
         /// An integer that you can use to identify view objects in your application.
         case tag(Int)
+        
+        /// A string that identifies the element.
+        case accessibilityIdentifier(String?)
         
         /// A semantic description of the view’s contents, used to determine whether the view should be flipped when switching between left-to-right and right-to-left layouts.
         case semanticContentAttribute(UISemanticContentAttribute)
