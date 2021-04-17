@@ -149,26 +149,11 @@ public extension UITableView {
         /// The default height (in points) of each row in the table view.
         case rowHeight(CGFloat)
         
-        /// Sets automatic height (in points) for each row in the table view.
-        static var automaticRowHeight: Self {
-            .rowHeight(UITableView.automaticDimension)
-        }
-        
         /// The height of section headers in the table view.
         case sectionHeaderHeight(CGFloat)
         
-        /// Sets automatic height for section headers in the table view.
-        static var automaticSectionHeaderHeight: Self {
-            .sectionHeaderHeight(UITableView.automaticDimension)
-        }
-        
         /// The height of section footers in the table view.
         case sectionFooterHeight(CGFloat)
-        
-        /// Sets automatic height for section headers in the table view.
-        static var automaticSectionFooterHeight: Self {
-            .sectionFooterHeight(UITableView.automaticDimension)
-        }
         
         /// The estimated height of rows in the table view.
         case estimatedRowHeight(CGFloat)
@@ -254,6 +239,23 @@ public extension UITableView {
         
         /// The options for the table view.
         case viewOptions(UIView.Options)
+        
+        // MARK: - Convenience
+        
+        /// Sets automatic height for section headers in the table view.
+        public static var automaticSectionFooterHeight: Self {
+            .sectionFooterHeight(UITableView.automaticDimension)
+        }
+        
+        /// Sets automatic height (in points) for each row in the table view.
+        public static var automaticRowHeight: Self {
+            .rowHeight(UITableView.automaticDimension)
+        }
+        
+        /// Sets automatic height for section headers in the table view.
+        public static var automaticSectionHeaderHeight: Self {
+            .sectionHeaderHeight(UITableView.automaticDimension)
+        }
         
         /// A Boolean value that determines whether scrolling is enabled.
         public static func isScrollEnabled(_ isScrollEnabled: Bool) -> Self {
