@@ -46,6 +46,9 @@ public extension UITextView {
                 
             case let .attributedText(attributedText):
                 self.attributedText = attributedText
+                
+            case let .delegate(delegate):
+                self.delegate = delegate
                                 
             case let .viewOptions(viewOptions):
                 apply(viewOptions: viewOptions)
@@ -62,6 +65,8 @@ public extension UITextView {
     enum Option {
         /// The text that the text view displays.
         case text(String?)
+        
+        case delegate(UITextViewDelegate)
         
         /// The styled text that the text view displays.
         case attributedText(NSAttributedString?)
@@ -94,6 +99,36 @@ public extension UITextView {
         case scrollViewOptions(UIScrollView.Options)
         
         // MARK: - Convenience
+        
+        /// A Boolean value that determines whether scrolling is enabled.
+        public static func isScrollEnabled(_ isScrollEnabled: Bool) -> Self {
+            .scrollViewOptions(.isScrollEnabled(isScrollEnabled))
+        }
+        
+        /// The text view’s background color.
+        public static func backgroundColor(_ color: UIColor?) -> Self {
+            .viewOptions(.backgroundColor(color))
+        }
+        
+        /// The text view’s tint color.
+        public static func tintColor(_ color: UIColor) -> Self {
+            .viewOptions(.tintColor(color))
+        }
+        
+        /// The custom distance that the content view is inset from the safe area or scroll view edges.
+        public static func contentInset(_ contentInset: UIEdgeInsets) -> Self {
+            .scrollViewOptions(.contentInset(contentInset))
+        }
+        
+        /// The custom distance that the content view is inset from the safe area or scroll view edges.
+        public static func contentInset(top: CGFloat = .zero, left: CGFloat = .zero, bottom: CGFloat = .zero, right: CGFloat = .zero) -> Self {
+            .contentInset(UIEdgeInsets(top: top, left: left, bottom: bottom, right: right))
+        }
+        
+        /// The custom distance that the content view is inset from the safe area or scroll view edges.
+        public static func contentInset<T: RawRepresentable>(top: T? = nil, left: T? = nil, bottom: T? = nil, right: T? = nil) -> Self where T.RawValue == CGFloat {
+            .contentInset(UIEdgeInsets(top: top, left: left, bottom: bottom, right: right))
+        }
         
         /// Constants that describe the preferred styles for fonts.
         public static func textStyle(_ style: UIFont.TextStyle, traits: UIFontDescriptor.SymbolicTraits = []) -> Self {

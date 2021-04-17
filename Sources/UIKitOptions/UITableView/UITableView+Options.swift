@@ -256,6 +256,36 @@ public extension UITableView {
         /// The options for the table view.
         case viewOptions(UIView.Options)
         
+        /// A Boolean value that determines whether scrolling is enabled.
+        public static func isScrollEnabled(_ isScrollEnabled: Bool) -> Self {
+            .scrollViewOptions(.isScrollEnabled(isScrollEnabled))
+        }
+        
+        /// The table view’s background color.
+        public static func backgroundColor(_ color: UIColor?) -> Self {
+            .viewOptions(.backgroundColor(color))
+        }
+        
+        /// The table view’s tint color.
+        public static func tintColor(_ color: UIColor) -> Self {
+            .viewOptions(.tintColor(color))
+        }
+        
+        /// The custom distance that the content view is inset from the safe area or scroll view edges.
+        public static func contentInset(_ contentInset: UIEdgeInsets) -> Self {
+            .scrollViewOptions(.contentInset(contentInset))
+        }
+        
+        /// The custom distance that the content view is inset from the safe area or scroll view edges.
+        public static func contentInset(top: CGFloat = .zero, left: CGFloat = .zero, bottom: CGFloat = .zero, right: CGFloat = .zero) -> Self {
+            .contentInset(UIEdgeInsets(top: top, left: left, bottom: bottom, right: right))
+        }
+        
+        /// The custom distance that the content view is inset from the safe area or scroll view edges.
+        public static func contentInset<T: RawRepresentable>(top: T? = nil, left: T? = nil, bottom: T? = nil, right: T? = nil) -> Self where T.RawValue == CGFloat {
+            .contentInset(UIEdgeInsets(top: top, left: left, bottom: bottom, right: right))
+        }
+        
         /// The options for the table view.
         public static func viewOptions(_ options: UIView.Option...) -> Self {
             .viewOptions(options)

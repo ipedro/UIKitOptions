@@ -96,7 +96,17 @@ public extension UILabel {
             .font(UIFont.preferredFont(forTextStyle: style, with: traits))
         }
         
-        /// The appearance options of the view.
+        /// The label's background color.
+        public static func backgroundColor(_ color: UIColor?) -> Self {
+            .viewOptions(.backgroundColor(color))
+        }
+        
+        /// The label's tint color.
+        public static func tintColor(_ color: UIColor) -> Self {
+            .viewOptions(.tintColor(color))
+        }
+        
+        /// The appearance options of the label.
         public static func viewOptions(_ options: UIView.Option...) -> Self {
             .viewOptions(options)
         }
@@ -106,7 +116,7 @@ public extension UILabel {
             .viewOptions(.layerOptions(options))
         }
         
-        /// Describes the view's layout compression and hugging priorities.
+        /// Describes the label's layout compression and hugging priorities.
         public static func layoutCompression(_ options: LayoutCompressionOption...) -> Self {
             .viewOptions(.layoutCompression(options))
         }

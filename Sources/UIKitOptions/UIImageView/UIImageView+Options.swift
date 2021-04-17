@@ -56,6 +56,16 @@ public extension UIImageView {
         
         // MARK: - Convenience
         
+        /// The image view’s background color.
+        public static func backgroundColor(_ color: UIColor?) -> Self {
+            .viewOptions(.backgroundColor(color))
+        }
+        
+        /// The image view’s tint color.
+        public static func tintColor(_ color: UIColor) -> Self {
+            .viewOptions(.tintColor(color))
+        }
+        
         /// The options for the stack view.
         public static func viewOptions(_ options: UIView.Option...) -> Self {
             .viewOptions(options)
