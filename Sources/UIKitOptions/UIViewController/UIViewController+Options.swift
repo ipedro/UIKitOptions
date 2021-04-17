@@ -58,6 +58,9 @@ public extension UIViewController {
             case let .title(title):
                 self.title = title
                 
+            case let .popoverPresentationOptions(popoverPresentationOptions):
+                popoverPresentationController?.apply(popoverPresentationOptions: popoverPresentationOptions)
+                
             #if swift(>=5.0)
             case let .overrideUserInterfaceStyle(overrideUserInterfaceStyle):
                 if #available(iOS 13.0, *) {
@@ -125,5 +128,13 @@ public extension UIViewController {
         @available(iOS 13.0, *)
         /// A Boolean value indicating whether the view controller enforces a modal behavior.
         case isModalInPresentation(Bool)
+        
+        case popoverPresentationOptions(UIPopoverPresentationController.Options)
+        
+        // MARK: - Convenience
+        
+        public static func popoverPresentationOptions(_ options: UIPopoverPresentationController.Option...) -> Self {
+            .popoverPresentationOptions(options)
+        }
     }
 }
