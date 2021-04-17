@@ -76,9 +76,14 @@ public extension UIImageView {
             .viewOptions(.layerOptions(options))
         }
         
-        /// Describes the stack view's layout compression and hugging priorities.
-        public static func layoutCompression(_ options: LayoutCompressionOption...) -> Self {
-            .viewOptions(.layoutCompression(options))
+        /// The priority with which a view resists being made smaller than its intrinsic width or height.
+        public static func compressionResistance(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> Self {
+            .viewOptions(.layoutCompression(.compressionResistance(priority, for: axis)))
+        }
+        
+        /// The priority with which a view resists being made larger than its intrinsic width or height.
+        public static func huggingPriority(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> Self {
+            .viewOptions(.layoutCompression(.huggingPriority(priority, for: axis)))
         }
     }
     

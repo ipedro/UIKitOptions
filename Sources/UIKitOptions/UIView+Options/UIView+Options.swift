@@ -159,6 +159,16 @@ public extension UIView {
         
         // MARK: - Convenience
         
+        /// The priority with which a view resists being made smaller than its intrinsic width or height.
+        public static func compressionResistance(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> Self {
+            .layoutCompression(.compressionResistance(priority, for: axis))
+        }
+        
+        /// The priority with which a view resists being made larger than its intrinsic width or height.
+        public static func huggingPriority(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> Self {
+            .layoutCompression(.huggingPriority(priority, for: axis))
+        }
+        
         /// Describes the layer's appearance.
         public static func layerOptions(_ layerOptions: CALayer.Option...) -> Self {
             .layerOptions(layerOptions)
