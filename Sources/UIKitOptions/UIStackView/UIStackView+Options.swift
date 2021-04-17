@@ -17,8 +17,6 @@ public extension UIStackView {
     /// Applies the appeareance options to the stack view instance.
     /// - Parameter options: The stack view appearance options.
     func apply<Alignemnt: RawRepresentable>(stackViewOptions: [Option<Alignemnt>]) where Alignemnt.RawValue == UIStackView.Alignment {
-        isLayoutMarginsRelativeArrangement = true
-        
         stackViewOptions.forEach { option in
             switch option {
             case let .spacing(spacing):

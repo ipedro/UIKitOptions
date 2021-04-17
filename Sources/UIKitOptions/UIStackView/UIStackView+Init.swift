@@ -15,6 +15,7 @@ public extension UIStackView {
     static func vertical(_ options: VerticalOptions) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.isLayoutMarginsRelativeArrangement = true
         stackView.apply(stackViewOptions: options)
         
         return stackView
@@ -27,6 +28,7 @@ public extension UIStackView {
     static func horizontal(_ options: HorizontalOptions) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
+        stackView.isLayoutMarginsRelativeArrangement = true
         stackView.apply(stackViewOptions: options)
         
         return stackView
