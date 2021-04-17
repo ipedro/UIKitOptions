@@ -11,7 +11,29 @@ import UIKit
 
 public extension UIStackView {
     /// The layout of arranged views vertically to the stack view.
-    enum HorizontalAlignment {
+    enum HorizontalAlignment: RawRepresentable {
+        public init?(rawValue: UIStackView.Alignment) {
+            switch rawValue {
+            case .fill:
+                self = .fill
+            
+            case .firstBaseline:
+                self = .firstBaseline
+            
+            case .center:
+                self = .center
+            
+            case .lastBaseline:
+                self = .lastBaseline
+                
+            case .leading, .trailing:
+                return nil
+                
+            @unknown default:
+                return nil
+            }
+        }
+        
         /// Align the leading and trailing edges of horizontally stacked items tightly to the container.
         case fill
         /// A layout for horizontal stacks where the stack view aligns the top edge of its arranged views along its top edge. This is equivalent to the UIStackView.Alignment.leading alignment for vertical stacks.
@@ -53,7 +75,29 @@ public extension UIStackView {
 
 public extension UIStackView {
     /// The layout of arranged views horizontally to the stack view.
-    enum VerticalAlignment {
+    enum VerticalAlignment: RawRepresentable {
+        public init?(rawValue: UIStackView.Alignment) {
+            switch rawValue {
+            case .fill:
+                self = .fill
+                
+            case .leading:
+                self = .leading
+                
+            case .center:
+                self = .center
+                
+            case .trailing:
+                self = .trailing
+                
+            case .firstBaseline, .lastBaseline:
+                return nil
+                
+            @unknown default:
+                return nil
+            }
+        }
+        
         /// Align the leading and trailing edges of vertically stacked items tightly to the container.
         case fill
         /// A layout for vertical stacks where the stack view aligns the leading edge of its arranged views along its leading edge. This is equivalent to the top alignment for horizontal stacks.

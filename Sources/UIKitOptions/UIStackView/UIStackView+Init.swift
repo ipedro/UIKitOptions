@@ -8,12 +8,8 @@
 import UIKit
 
 public extension UIStackView {
-    convenience init(_ options: Option...) {
-        self.init()
-        apply(stackViewOptions: options)
-    }
     
-    static func vertical(_ options: Option...) -> UIStackView {
+    static func vertical(_ options: VerticalOption...) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.apply(stackViewOptions: options)
@@ -21,7 +17,7 @@ public extension UIStackView {
         return stackView
     }
     
-    static func horizontal(_ options: Option...) -> UIStackView {
+    static func horizontal(_ options: HorizontalOption...) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.apply(stackViewOptions: options)

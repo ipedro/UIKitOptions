@@ -10,23 +10,17 @@ import UIKit
 public extension UIStackView {
     /// Applies the appeareance options to the stack view instance.
     /// - Parameter options: The stack view appearance options.
-    func apply(stackViewOptions: Option...) {
+    func apply<Alignemnt: RawRepresentable>(stackViewOptions: Option<Alignemnt>...) where Alignemnt.RawValue == UIStackView.Alignment {
         apply(stackViewOptions: stackViewOptions)
     }
     
     /// Applies the appeareance options to the stack view instance.
     /// - Parameter options: The stack view appearance options.
-    func apply(stackViewOptions: Options) {
+    func apply<Alignemnt: RawRepresentable>(stackViewOptions: [Option<Alignemnt>]) where Alignemnt.RawValue == UIStackView.Alignment {
         isLayoutMarginsRelativeArrangement = true
         
         stackViewOptions.forEach { option in
             switch option {
-            case .verticalAxis:
-                self.axis = .vertical
-                
-            case .horizontalAxis:
-                self.axis = .horizontal
-                
             case let .spacing(spacing):
                 self.spacing = spacing
                 
@@ -34,7 +28,7 @@ public extension UIStackView {
                 self.directionalLayoutMargins = layoutMargins
                 
             case let .alignment(alignment):
-                self.alignment = alignment
+                self.alignment = alignment.rawValue
                 
             case let .distribution(distribution):
                 self.distribution = distribution
@@ -50,11 +44,17 @@ public extension UIStackView {
             }
         }
     }
-        
-    typealias Options = [Option]
+    
+    typealias VerticalOptions = [VerticalOption]
+    
+    typealias VerticalOption = Option<VerticalAlignment>
+    
+    typealias HorizontalOptions = [HorizontalOption]
+    
+    typealias HorizontalOption = Option<HorizontalAlignment>
     
     /// An object that defines the appearance of a stack view.
-    enum Option: Equatable {
+    enum Option<Alignment: RawRepresentable> {
         
         /// The list of views arranged by the stack view.
         case arrangedSubviews([UIView])
@@ -64,12 +64,6 @@ public extension UIStackView {
             .arrangedSubviews(views)
         }
         
-        /// The axis along which the arranged views are laid out.
-        case verticalAxis
-        
-        /// The axis along which the arranged views are laid out.
-        case horizontalAxis
-        
         /// The distance in points between the adjacent edges of the stack view’s arranged views.
         case spacing(CGFloat)
         
@@ -77,7 +71,7 @@ public extension UIStackView {
         case layoutMargins(NSDirectionalEdgeInsets)
         
         /// The alignment of the arranged subviews perpendicular to the stack view’s axis.
-        case alignment(UIStackView.Alignment)
+        case alignment(Alignment)
         
         /// The distribution of the arranged views along the stack view’s axis.
         case distribution(UIStackView.Distribution)
