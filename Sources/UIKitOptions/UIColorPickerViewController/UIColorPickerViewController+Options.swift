@@ -18,7 +18,7 @@ public extension UIColorPickerViewController {
     func apply(colorPickerOptions: Options) {
         colorPickerOptions.forEach { option in
             switch option {
-            case let .delegate(delegate):
+            case let .colorPickerDelegate(delegate):
                 self.delegate = delegate
                 
             case let .selectedColor(selectedColor):
@@ -30,8 +30,8 @@ public extension UIColorPickerViewController {
             case let .viewControllerOptions(viewControllerOptions):
                 self.apply(viewControllerOptions: viewControllerOptions)
                 
-            case let .popoverPresentationOptions(popoverPresentationOptions):
-                popoverPresentationController?.apply(popoverPresentationOptions: popoverPresentationOptions)
+            case let .popoverPresentationControllerOptions(popoverPresentationControllerOptions):
+                popoverPresentationController?.apply(popoverPresentationControllerOptions: popoverPresentationControllerOptions)
             }
         }
     }
@@ -40,7 +40,7 @@ public extension UIColorPickerViewController {
     
     enum Option {
         /// A view controller that handles the delegate actions.
-        case delegate(UIColorPickerViewControllerDelegate?)
+        case colorPickerDelegate(UIColorPickerViewControllerDelegate?)
         
         /// The color selected by the user.
         case selectedColor(UIColor)
@@ -50,16 +50,20 @@ public extension UIColorPickerViewController {
         
         case viewControllerOptions(UIViewController.Options)
         
-        case popoverPresentationOptions(UIPopoverPresentationController.Options)
+        case popoverPresentationControllerOptions(UIPopoverPresentationController.Options)
         
         // MARK: - Convenience
+        
+        public static func viewOptions(_ options: UIView.Option...) -> Self {
+            .viewControllerOptions(.viewOptions(options))
+        }
         
         public static func viewControllerOptions(_ options: UIViewController.Option...) -> Self {
             .viewControllerOptions(options)
         }
         
-        public static func popoverPresentationOptions(_ options: UIPopoverPresentationController.Option...) -> Self {
-            .popoverPresentationOptions(options)
+        public static func popoverPresentationControllerOptions(_ options: UIPopoverPresentationController.Option...) -> Self {
+            .popoverPresentationControllerOptions(options)
         }
     }
 }

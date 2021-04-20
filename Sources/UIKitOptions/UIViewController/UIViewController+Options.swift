@@ -58,9 +58,12 @@ public extension UIViewController {
             case let .title(title):
                 self.title = title
                 
-            case let .popoverPresentationOptions(popoverPresentationOptions):
-                popoverPresentationController?.apply(popoverPresentationOptions: popoverPresentationOptions)
+            case let .popoverPresentationControllerOptions(popoverPresentationControllerOptions):
+                popoverPresentationController?.apply(popoverPresentationControllerOptions: popoverPresentationControllerOptions)
                 
+            case let .viewOptions(viewOptions):
+                view.apply(viewOptions: viewOptions)
+            
             case let .overrideUserInterfaceStyle(overrideUserInterfaceStyle):
                 #if swift(>=5.0)
                 if #available(iOS 13.0, *) {
@@ -80,7 +83,7 @@ public extension UIViewController {
                     print("isModalInPresentation is unsupported in this iOS version. ignoring")
                 }
                 #endif
-            }
+            }                
         }
     }
     
@@ -150,12 +153,18 @@ public extension UIViewController {
         /// A Boolean value indicating whether the view controller enforces a modal behavior.
         case isModalInPresentation(Bool)
         
-        case popoverPresentationOptions(UIPopoverPresentationController.Options)
+        case popoverPresentationControllerOptions(UIPopoverPresentationController.Options)
+        
+        case viewOptions(UIView.Options)
         
         // MARK: - Convenience
         
-        public static func popoverPresentationOptions(_ options: UIPopoverPresentationController.Option...) -> Self {
-            .popoverPresentationOptions(options)
+        public static func viewOptions(_ options: UIView.Option...) -> Self {
+            .viewOptions(options)
+        }
+        
+        public static func popoverPresentationControllerOptions(_ options: UIPopoverPresentationController.Option...) -> Self {
+            .popoverPresentationControllerOptions(options)
         }
     }
 }

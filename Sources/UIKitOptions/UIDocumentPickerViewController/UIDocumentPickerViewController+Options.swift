@@ -20,7 +20,7 @@ public extension UIDocumentPickerViewController {
     func apply(documentPickerOptions: Options) {
         documentPickerOptions.forEach { option in
             switch option {
-            case let .delegate(delegate):
+            case let .documentPickerDelegate(delegate):
                 self.delegate = delegate
                 
             case let .allowsMultipleSelection(allowsMultipleSelection):
@@ -29,8 +29,8 @@ public extension UIDocumentPickerViewController {
             case let .viewControllerOptions(viewControllerOptions):
                 apply(viewControllerOptions: viewControllerOptions)
                 
-            case let .popoverPresentationOptions(popoverPresentationOptions):
-                popoverPresentationController?.apply(popoverPresentationOptions: popoverPresentationOptions)
+            case let .popoverPresentationControllerOptions(popoverPresentationControllerOptions):
+                popoverPresentationController?.apply(popoverPresentationControllerOptions: popoverPresentationControllerOptions)
                 
             case let .shouldShowFileExtensions(shouldShowFileExtensions):
                 #if swift(>=5.0)
@@ -51,9 +51,6 @@ public extension UIDocumentPickerViewController {
                  .documentTypes,
                  .urls:
                 break
-                
-            case let .tintColor(tintColor):
-                view.tintColor = tintColor
             }
         }
     }
@@ -62,8 +59,6 @@ public extension UIDocumentPickerViewController {
     
     enum Option {
         case documentTypes(UTTTypeOptions)
-        
-        case tintColor(UIColor)
         
         /// If true, the picker will give you access to a local copy of the document, otherwise you will have access to the original document.
         case asCopy(Bool)
@@ -74,7 +69,7 @@ public extension UIDocumentPickerViewController {
         case directoryURL(URL?)
         
         /// An object that adheres to the UIDocumentPickerDelegate protocol.
-        case delegate(UIDocumentPickerDelegate?)
+        case documentPickerDelegate(UIDocumentPickerDelegate?)
         
         /// A Boolean value that determines whether the user can select more than one document at a time.
         case allowsMultipleSelection(Bool)
@@ -85,6 +80,10 @@ public extension UIDocumentPickerViewController {
         
         // MARK: - Convenience
         
+        public static func viewOptions(_ options: UIView.Option...) -> Self {
+            .viewControllerOptions(.viewOptions(options))
+        }
+        
         public static func urls(_ urls: URL...) -> Self {
             .urls(urls)
         }
@@ -93,10 +92,10 @@ public extension UIDocumentPickerViewController {
             .viewControllerOptions(options)
         }
         
-        case popoverPresentationOptions(UIPopoverPresentationController.Options)
+        case popoverPresentationControllerOptions(UIPopoverPresentationController.Options)
         
-        public static func popoverPresentationOptions(_ options: UIPopoverPresentationController.Option...) -> Self {
-            .popoverPresentationOptions(options)
+        public static func popoverPresentationControllerOptions(_ options: UIPopoverPresentationController.Option...) -> Self {
+            .popoverPresentationControllerOptions(options)
         }
 
         public static func documentTypes(_ options: UTTTypeOption...) -> Self {

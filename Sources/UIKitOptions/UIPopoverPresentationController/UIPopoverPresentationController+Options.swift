@@ -9,14 +9,14 @@ import UIKit
 
 public extension UIPopoverPresentationController {
     
-    func apply(popoverPresentationOptions: Option...) {
-        apply(popoverPresentationOptions: popoverPresentationOptions)
+    func apply(popoverPresentationControllerOptions: Option...) {
+        apply(popoverPresentationControllerOptions: popoverPresentationControllerOptions)
     }
     
-    func apply(popoverPresentationOptions: Options) {
-        popoverPresentationOptions.forEach { option in
+    func apply(popoverPresentationControllerOptions: Options) {
+        popoverPresentationControllerOptions.forEach { option in
             switch option {
-            case let .delegate(delegate):
+            case let .popoverPresentationDelegate(delegate):
                 self.delegate = delegate
                 
             case let .permittedArrowDirections(permittedArrowDirections):
@@ -42,6 +42,9 @@ public extension UIPopoverPresentationController {
                 
             case let .popoverLayoutMargins(popoverLayoutMargins):
                 self.popoverLayoutMargins = popoverLayoutMargins
+                
+            case let .containerViewOptions(containerViewOptions):
+                containerView?.apply(viewOptions: containerViewOptions)
             }
         }
     }
@@ -50,7 +53,7 @@ public extension UIPopoverPresentationController {
     
     enum Option {
         /// The delegate that handles popover-related messages.
-        case delegate(UIPopoverPresentationControllerDelegate?)
+        case popoverPresentationDelegate(UIPopoverPresentationControllerDelegate?)
         
         /// The arrow directions that you allow for the popover.
         case permittedArrowDirections(UIPopoverArrowDirection)
@@ -75,5 +78,14 @@ public extension UIPopoverPresentationController {
         
         /// The margins that define the portion of the screen in which it is permissible to display the popover.
         case popoverLayoutMargins(UIEdgeInsets)
+        
+        /// The appearance options of the container view.
+        case containerViewOptions(UIView.Options)
+        
+        // MARK: - Convenience
+        
+        static func conainerViewOptions(_ options: UIView.Options) -> Self {
+            .containerViewOptions(options)
+        }
     }
 }
