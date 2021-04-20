@@ -83,7 +83,10 @@ public extension UIViewController {
                     print("isModalInPresentation is unsupported in this iOS version. ignoring")
                 }
                 #endif
-            }                
+                
+            case let .hidesBottomBarWhenPushed(hidesBottomBarWhenPushed):
+                self.hidesBottomBarWhenPushed = hidesBottomBarWhenPushed
+            }
         }
     }
     
@@ -119,6 +122,9 @@ public extension UIViewController {
         
         /// The preferred size for the view controller’s view.
         case preferredContentSize(CGSize)
+        
+        /// A Boolean value indicating whether the toolbar at the bottom of the screen is hidden when the view controller is pushed on to a navigation controller.
+        case hidesBottomBarWhenPushed(Bool)
         
         public enum UserInterfaceStyle {
             case unspecified, light, dark

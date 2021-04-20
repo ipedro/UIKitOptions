@@ -29,9 +29,6 @@ public extension UIColorPickerViewController {
                 
             case let .viewControllerOptions(viewControllerOptions):
                 self.apply(viewControllerOptions: viewControllerOptions)
-                
-            case let .popoverPresentationControllerOptions(popoverPresentationControllerOptions):
-                popoverPresentationController?.apply(popoverPresentationControllerOptions: popoverPresentationControllerOptions)
             }
         }
     }
@@ -50,8 +47,6 @@ public extension UIColorPickerViewController {
         
         case viewControllerOptions(UIViewController.Options)
         
-        case popoverPresentationControllerOptions(UIPopoverPresentationController.Options)
-        
         // MARK: - Convenience
         
         public static func viewOptions(_ options: UIView.Option...) -> Self {
@@ -63,7 +58,7 @@ public extension UIColorPickerViewController {
         }
         
         public static func popoverPresentationControllerOptions(_ options: UIPopoverPresentationController.Option...) -> Self {
-            .popoverPresentationControllerOptions(options)
+            .viewControllerOptions(.popoverPresentationControllerOptions(options))
         }
     }
 }

@@ -84,7 +84,7 @@ public extension UIPopoverPresentationController {
         
         // MARK: - Convenience
         
-        static func conainerViewOptions(_ options: UIView.Options) -> Self {
+        public static func containerViewOptions(_ options: UIView.Option...) -> Self {
             .containerViewOptions(options)
         }
     }
