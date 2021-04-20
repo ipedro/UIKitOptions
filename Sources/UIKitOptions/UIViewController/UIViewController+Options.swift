@@ -61,17 +61,25 @@ public extension UIViewController {
             case let .popoverPresentationOptions(popoverPresentationOptions):
                 popoverPresentationController?.apply(popoverPresentationOptions: popoverPresentationOptions)
                 
-            #if swift(>=5.0)
             case let .overrideUserInterfaceStyle(overrideUserInterfaceStyle):
+                #if swift(>=5.0)
                 if #available(iOS 13.0, *) {
-                    self.overrideUserInterfaceStyle = overrideUserInterfaceStyle
+                    self.overrideUserInterfaceStyle = overrideUserInterfaceStyle.rawValue
                 }
+                else {
+                    print("overrideUserInterfaceStyle is unsupported in this iOS version. ignoring")
+                }
+                #endif
                 
             case let .isModalInPresentation(isModalInPresentation):
+                #if swift(>=5.0)
                 if #available(iOS 13.0, *) {
                     self.isModalInPresentation = isModalInPresentation
                 }
-            #endif
+                else {
+                    print("isModalInPresentation is unsupported in this iOS version. ignoring")
+                }
+                #endif
             }
         }
     }
@@ -109,9 +117,23 @@ public extension UIViewController {
         /// The preferred size for the view controller’s view.
         case preferredContentSize(CGSize)
         
-        @available(iOS 13.0, *)
+        public enum UserInterfaceStyle {
+            case unspecified, light, dark
+            
+            @available(iOS 12.0, *)
+            var rawValue: UIUserInterfaceStyle {
+                switch self {
+                case .unspecified:
+                    return .unspecified
+                case .light:
+                    return .light
+                case .dark:
+                    return .dark
+                }
+            }
+        }
         /// The user interface style adopted by the view controller and all of its children.
-        case overrideUserInterfaceStyle(UIUserInterfaceStyle)
+        case overrideUserInterfaceStyle(UserInterfaceStyle)
         
         /// The identifier that determines whether the view controller supports state restoration.
         case restorationIdentifier(String?)
@@ -125,7 +147,6 @@ public extension UIViewController {
         /// Custom insets that you specify to modify the view controller's safe area.
         case additionalSafeAreaInsets(UIEdgeInsets)
         
-        @available(iOS 13.0, *)
         /// A Boolean value indicating whether the view controller enforces a modal behavior.
         case isModalInPresentation(Bool)
         
