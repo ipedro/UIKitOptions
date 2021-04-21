@@ -9,7 +9,7 @@ import UIKit
 
 public extension UIEdgeInsets {
     
-    init(top: CGFloat?, left: CGFloat?, bottom: CGFloat?, right: CGFloat?) {
+    init(top: CGFloat? = nil, left: CGFloat? = nil, bottom: CGFloat? = nil, right: CGFloat? = nil) {
         self.init(
             top: top ?? .zero,
             left: left ?? .zero,
@@ -18,12 +18,43 @@ public extension UIEdgeInsets {
         )
     }
     
-    init<T: RawRepresentable>(top: T?, left: T?, bottom: T?, right: T?) where T.RawValue == CGFloat {
+    init(_ insets: CGFloat) {
+        self.init(top: insets, left: insets, bottom: insets, right: insets)
+    }
+    
+    init(horizontal: CGFloat? = nil, vertical: CGFloat? = nil) {
+        self.init(
+            top: vertical ?? .zero,
+            left: horizontal ?? .zero,
+            bottom: vertical ?? .zero,
+            right: horizontal ?? .zero
+        )
+    }
+    
+    init<T: RawRepresentable>(top: T? = nil, left: T? = nil, bottom: T? = nil, right: T? = nil) where T.RawValue == CGFloat {
         self.init(
             top: top?.rawValue ?? .zero,
             left: left?.rawValue ?? .zero,
             bottom: bottom?.rawValue ?? .zero,
             right: right?.rawValue ?? .zero
+        )
+    }
+    
+    init<T: RawRepresentable>(_ insets: T) where T.RawValue == CGFloat {
+        self.init(
+            top: insets.rawValue,
+            left: insets.rawValue,
+            bottom: insets.rawValue,
+            right: insets.rawValue
+        )
+    }
+    
+    init<T: RawRepresentable>(horizontal: T? = nil, vertical: T? = nil) where T.RawValue == CGFloat {
+        self.init(
+            top: vertical?.rawValue ?? .zero,
+            left: horizontal?.rawValue ?? .zero,
+            bottom: vertical?.rawValue ?? .zero,
+            right: horizontal?.rawValue ?? .zero
         )
     }
     
