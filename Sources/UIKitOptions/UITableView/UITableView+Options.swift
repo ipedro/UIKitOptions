@@ -123,6 +123,10 @@ public extension UITableView {
                 
             case let .scrollViewOptions(scrollViewOptions):
                 apply(scrollViewOptions: scrollViewOptions)
+                
+            // used only on init
+            case .style:
+                break
             }
         }
     }
@@ -130,6 +134,9 @@ public extension UITableView {
     typealias Options = [Option]
     
     enum Option {
+        
+        /// A constant that specifies the style of the table view. Can only be applied on init, otherwise is ignored.
+        case style(UITableView.Style)
         
         ///The object that acts as the data source of the table view.
         case dataSource(UITableViewDataSource?)

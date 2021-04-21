@@ -8,12 +8,24 @@
 import UIKit
 
 public extension UITableView {
-    convenience init(_ style: UITableView.Style = .plain, _ options: Option...) {
-        self.init(style, options)
-    }
-    
-    convenience init(_ style: UITableView.Style = .plain, _ options: Options) {
-        self.init(frame: .zero, style: style)
+    convenience init(_ options: Option...) {
+        self.init(frame: .zero, style: options.style)
         apply(tableViewOptions: options)
+    }
+}
+
+// MARK: - Convenience
+
+extension Collection where Element == UITableView.Option {
+    var style: UITableView.Style {
+        for option in self {
+            guard case let .style(style) = option else {
+                continue
+            }
+            
+            return style
+        }
+        
+        return .plain
     }
 }
