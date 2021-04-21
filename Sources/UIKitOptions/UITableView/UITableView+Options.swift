@@ -241,87 +241,111 @@ public extension UITableView {
         
         /// The options for the table view.
         case viewOptions(UIView.Options)
-        
-        // MARK: - Convenience
-        
-        /// The options for the table view.
-        public static func scrollViewOptions(_ scrollViewOptions: UIScrollView.Option...) -> Self {
-            .scrollViewOptions(scrollViewOptions)
-        }
-        
-        /// The options for the table view.
-        public static func keyboardDismissMode(_ keyboardDismissMode: UIScrollView.KeyboardDismissMode) -> Self {
-            .scrollViewOptions(.keyboardDismissMode(keyboardDismissMode))
-        }
-        
-        /// The options for the table view.
-        public static func indicatorStyle(_ indicatorStyle: UIScrollView.IndicatorStyle) -> Self {
-            .scrollViewOptions(.indicatorStyle(indicatorStyle))
-        }
-        
-        /// Sets automatic height for section headers in the table view.
-        public static var automaticSectionFooterHeight: Self {
-            .sectionFooterHeight(UITableView.automaticDimension)
-        }
-        
-        /// Sets automatic height (in points) for each row in the table view.
-        public static var automaticRowHeight: Self {
-            .rowHeight(UITableView.automaticDimension)
-        }
-        
-        /// Sets automatic height for section headers in the table view.
-        public static var automaticSectionHeaderHeight: Self {
-            .sectionHeaderHeight(UITableView.automaticDimension)
-        }
-        
-        /// A Boolean value that determines whether scrolling is enabled.
-        public static func isScrollEnabled(_ isScrollEnabled: Bool) -> Self {
-            .scrollViewOptions(.isScrollEnabled(isScrollEnabled))
-        }
-        
-        /// The table view’s background color.
-        public static func backgroundColor(_ color: UIColor?) -> Self {
-            .viewOptions(.backgroundColor(color))
-        }
-        
-        /// The table view’s tint color.
-        public static func tintColor(_ color: UIColor) -> Self {
-            .viewOptions(.tintColor(color))
-        }
-        
-        /// The custom distance that the content view is inset from the safe area or scroll view edges.
-        public static func contentInset(_ contentInset: UIEdgeInsets) -> Self {
-            .scrollViewOptions(.contentInset(contentInset))
-        }
-        
-        /// The custom distance that the content view is inset from the safe area or scroll view edges.
-        public static func contentInset(top: CGFloat = .zero, left: CGFloat = .zero, bottom: CGFloat = .zero, right: CGFloat = .zero) -> Self {
-            .contentInset(UIEdgeInsets(top: top, left: left, bottom: bottom, right: right))
-        }
-        
-        /// The custom distance that the content view is inset from the safe area or scroll view edges.
-        public static func contentInset<T: RawRepresentable>(top: T? = nil, left: T? = nil, bottom: T? = nil, right: T? = nil) -> Self where T.RawValue == CGFloat {
-            .contentInset(UIEdgeInsets(top: top, left: left, bottom: bottom, right: right))
-        }
-        
-        /// The options for the table view.
-        public static func viewOptions(_ options: UIView.Option...) -> Self {
-            .viewOptions(options)
-        }
-        
-        /// Describes the table view layer's appearance.
-        public static func layerOptions(_ options: CALayer.Option...) -> Self {
-            .viewOptions(.layerOptions(options))
-        }
-        
-        /// The priority with which a view resists being made smaller than its intrinsic width or height.
-        public static func compressionResistance(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> Self {
-            .viewOptions(.layoutCompression(.compressionResistance(priority, for: axis)))
-        }
-        
-        /// The priority with which a view resists being made larger than its intrinsic width or height.
-        public static func huggingPriority(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> Self {
-            .viewOptions(.layoutCompression(.huggingPriority(priority, for: axis)))
-        }
+    }
+}
+
+// MARK: - Convenience -
+
+public extension UITableView.Option {
+    /// The options for the table view.
+    static func indicatorStyle(_ indicatorStyle: UIScrollView.IndicatorStyle) -> Self {
+        .scrollViewOptions(.indicatorStyle(indicatorStyle))
+    }
+    
+    /// Sets automatic height for section headers in the table view.
+    static var automaticSectionFooterHeight: Self {
+        .sectionFooterHeight(UITableView.automaticDimension)
+    }
+    
+    /// Sets automatic height (in points) for each row in the table view.
+    static var automaticRowHeight: Self {
+        .rowHeight(UITableView.automaticDimension)
+    }
+    
+    /// Sets automatic height for section headers in the table view.
+    static var automaticSectionHeaderHeight: Self {
+        .sectionHeaderHeight(UITableView.automaticDimension)
+    }
+    
+    // MARK: - Scroll View
+    
+    /// The options for the table view.
+    static func scrollViewOptions(_ scrollViewOptions: UIScrollView.Option...) -> Self {
+        .scrollViewOptions(scrollViewOptions)
+    }
+    
+    /// The options for the table view.
+    static func keyboardDismissMode(_ keyboardDismissMode: UIScrollView.KeyboardDismissMode) -> Self {
+        .scrollViewOptions(.keyboardDismissMode(keyboardDismissMode))
+    }
+    
+    /// A Boolean value that determines whether scrolling is enabled.
+    static func isScrollEnabled(_ isScrollEnabled: Bool) -> Self {
+        .scrollViewOptions(.isScrollEnabled(isScrollEnabled))
+    }
+    
+    // MARK: - Content Inset
+    
+    /// The custom distance that the content view is inset from the safe area or scroll view edges.
+    static func contentInset(_ contentInset: UIEdgeInsets) -> Self {
+        .scrollViewOptions(.contentInset(contentInset))
+    }
+    
+    /// The custom distance that the content view is inset from the safe area or scroll view edges.
+    static func contentInset(top: CGFloat = .zero, left: CGFloat = .zero, bottom: CGFloat = .zero, right: CGFloat = .zero) -> Self {
+        .contentInset(UIEdgeInsets(top: top, left: left, bottom: bottom, right: right))
+    }
+    
+    /// The custom distance that the content view is inset from the safe area or scroll view edges.
+    static func contentInset<T: RawRepresentable>(top: T? = nil, left: T? = nil, bottom: T? = nil, right: T? = nil) -> Self where T.RawValue == CGFloat {
+        .contentInset(UIEdgeInsets(top: top, left: left, bottom: bottom, right: right))
+    }
+    
+    // MARK: - Separator Inset
+    
+    /// The custom distance that the content view is inset from the safe area or scroll view edges.
+    static func separatorInset(top: CGFloat = .zero, left: CGFloat = .zero, bottom: CGFloat = .zero, right: CGFloat = .zero) -> Self {
+        .separatorInset(UIEdgeInsets(top: top, left: left, bottom: bottom, right: right))
+    }
+    
+    /// The custom distance that the content view is inset from the safe area or scroll view edges.
+    static func separatorInset<T: RawRepresentable>(top: T? = nil, left: T? = nil, bottom: T? = nil, right: T? = nil) -> Self where T.RawValue == CGFloat {
+        .separatorInset(UIEdgeInsets(top: top, left: left, bottom: bottom, right: right))
+    }
+    
+    // MARK: - Layout Compression
+    
+    /// The priority with which a view resists being made smaller than its intrinsic width or height.
+    static func compressionResistance(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> Self {
+        .viewOptions(.layoutCompression(.compressionResistance(priority, for: axis)))
+    }
+    
+    /// The priority with which a view resists being made larger than its intrinsic width or height.
+    static func huggingPriority(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> Self {
+        .viewOptions(.layoutCompression(.huggingPriority(priority, for: axis)))
+    }
+    
+    // MARK: - View Options
+    
+    /// The options for the table view.
+    static func viewOptions(_ options: UIView.Option...) -> Self {
+        .viewOptions(options)
+    }
+    
+    /// The table view’s background color.
+    static func backgroundColor(_ color: UIColor?) -> Self {
+        .viewOptions(.backgroundColor(color))
+    }
+    
+    /// The table view’s tint color.
+    static func tintColor(_ color: UIColor) -> Self {
+        .viewOptions(.tintColor(color))
+    }
+    
+    // MARK: - Layer Options
+    
+    /// Describes the table view layer's appearance.
+    static func layerOptions(_ options: CALayer.Option...) -> Self {
+        .viewOptions(.layerOptions(options))
     }
 }
