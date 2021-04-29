@@ -11,6 +11,10 @@ import UIKit
 public extension UIImage {
     
     func resized(_ newSize: CGSize) -> UIImage {
+        guard newSize != size else {
+            return self
+        }
+        
         let aspectRect = AVMakeRect(
             aspectRatio: size,
             insideRect: CGRect(
