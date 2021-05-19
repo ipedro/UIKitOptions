@@ -10,20 +10,23 @@ import UIKit
 public extension UIStackView {
     /// Applies the appeareance options to the stack view instance.
     /// - Parameter options: The stack view appearance options.
-    func apply<Alignemnt: RawRepresentable>(stackViewOptions: Option<Alignemnt>...) where Alignemnt.RawValue == UIStackView.Alignment {
+    func apply(stackViewOptions: Option...){
         apply(stackViewOptions: stackViewOptions)
     }
     
     /// Applies the appeareance options to the stack view instance.
     /// - Parameter options: The stack view appearance options.
-    func apply<Alignemnt: RawRepresentable>(stackViewOptions: [Option<Alignemnt>]) where Alignemnt.RawValue == UIStackView.Alignment {
+    func apply(stackViewOptions: Options) {
         stackViewOptions.forEach { option in
             switch option {
             case let .spacing(spacing):
                 self.spacing = spacing
                 
-            case let .alignment(alignment):
-                self.alignment = alignment.rawValue
+            case let .verticalAlignment(verticalAlignment):
+                self.alignment = verticalAlignment.rawValue
+                
+            case let .horizontalAlignment(horizontalAlignment):
+                self.alignment = horizontalAlignment.rawValue
                 
             case let .distribution(distribution):
                 self.distribution = distribution
@@ -40,16 +43,10 @@ public extension UIStackView {
         }
     }
     
-    typealias VerticalOptions = [VerticalOption]
-    
-    typealias VerticalOption = Option<VerticalAlignment>
-    
-    typealias HorizontalOptions = [HorizontalOption]
-    
-    typealias HorizontalOption = Option<HorizontalAlignment>
+    typealias Options = [Option]
     
     /// An object that defines the appearance of a stack view.
-    enum Option<Alignment: RawRepresentable> {
+    enum Option {
         
         /// The list of views arranged by the stack view.
         case arrangedSubviews([UIView])
@@ -58,7 +55,10 @@ public extension UIStackView {
         case spacing(CGFloat)
         
         /// The alignment of the arranged subviews perpendicular to the stack view’s axis.
-        case alignment(Alignment)
+        case verticalAlignment(VerticalAlignment)
+        
+        /// The alignment of the arranged subviews perpendicular to the stack view’s axis.
+        case horizontalAlignment(HorizontalAlignment)
         
         /// The distribution of the arranged views along the stack view’s axis.
         case distribution(UIStackView.Distribution)
