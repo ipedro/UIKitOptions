@@ -19,6 +19,9 @@ public extension UIStackView {
     func apply(stackViewOptions: Options) {
         stackViewOptions.forEach { option in
             switch option {
+            case let .axis(axis):
+                self.axis = axis
+                
             case let .spacing(spacing):
                 self.spacing = spacing
                 
@@ -47,6 +50,8 @@ public extension UIStackView {
     
     /// An object that defines the appearance of a stack view.
     enum Option {
+        /// The axis along which the arranged views are laid out.
+        case axis(NSLayoutConstraint.Axis)
         
         /// The list of views arranged by the stack view.
         case arrangedSubviews([UIView])
@@ -61,7 +66,7 @@ public extension UIStackView {
         case horizontalAlignment(HorizontalAlignment)
         
         /// The distribution of the arranged views along the stack view’s axis.
-        case distribution(UIStackView.Distribution)
+        case distribution(Distribution)
         
         /// A Boolean value that determines whether the stack view lays out its arranged views relative to its layout margins.
         case isLayoutMarginsRelativeArrangement(Bool)
