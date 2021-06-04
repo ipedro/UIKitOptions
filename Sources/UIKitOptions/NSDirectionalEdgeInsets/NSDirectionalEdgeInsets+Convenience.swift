@@ -8,21 +8,38 @@
 import UIKit
 
 public extension NSDirectionalEdgeInsets {
+    // MARK: - init(insets:)
     
-    init(top: CGFloat? = nil, leading: CGFloat? = nil, bottom: CGFloat? = nil, trailing: CGFloat? = nil) {
+    init(insets: UIEdgeInsets) {
         self.init(
-            top: top ?? .zero,
-            leading: leading ?? .zero,
-            bottom: bottom ?? .zero,
-            trailing: trailing ?? .zero
+            top: insets.top,
+            leading: insets.left,
+            bottom: insets.bottom,
+            trailing: insets.right
         )
     }
     
-    init(_ insets: CGFloat) {
-        self.init(top: insets, leading: insets, bottom: insets, trailing: insets)
+    init<T: BinaryFloatingPoint>(insets: T) {
+        self.init(
+            top: insets,
+            leading: insets,
+            bottom: insets,
+            trailing: insets
+        )
     }
     
-    init(horizontal: CGFloat? = nil, vertical: CGFloat? = nil) {
+    init<T: RawRepresentable>(insets: T) where T.RawValue: BinaryFloatingPoint {
+        self.init(
+            top: CGFloat(insets.rawValue),
+            leading: CGFloat(insets.rawValue),
+            bottom: CGFloat(insets.rawValue),
+            trailing: CGFloat(insets.rawValue)
+        )
+    }
+    
+    // MARK: - init(horizontal:vertical:)
+    
+    init<T: BinaryFloatingPoint>(horizontal: T? = nil, vertical: T? = nil) {
         self.init(
             top: vertical ?? .zero,
             leading: horizontal ?? .zero,
@@ -31,25 +48,7 @@ public extension NSDirectionalEdgeInsets {
         )
     }
     
-    init<T: RawRepresentable>(top: T? = nil, leading: T? = nil, bottom: T? = nil, trailing: T? = nil) where T.RawValue == CGFloat {
-        self.init(
-            top: top?.rawValue ?? .zero,
-            leading: leading?.rawValue ?? .zero,
-            bottom: bottom?.rawValue ?? .zero,
-            trailing: trailing?.rawValue ?? .zero
-        )
-    }
-    
-    init<T: RawRepresentable>(_ insets: T) where T.RawValue == CGFloat {
-        self.init(
-            top: insets.rawValue,
-            leading: insets.rawValue,
-            bottom: insets.rawValue,
-            trailing: insets.rawValue
-        )
-    }
-    
-    init<T: RawRepresentable>(horizontal: T? = nil, vertical: T? = nil) where T.RawValue == CGFloat {
+    init<T: RawRepresentable>(horizontal: T? = nil, vertical: T? = nil) where T.RawValue: BinaryFloatingPoint {
         self.init(
             top: vertical?.rawValue ?? .zero,
             leading: horizontal?.rawValue ?? .zero,
@@ -58,15 +57,49 @@ public extension NSDirectionalEdgeInsets {
         )
     }
     
-    var verticalInsets: CGFloat { top + bottom }
+    // MARK: - init(top:leading:bottom:trailing)
+
+    init<T: BinaryFloatingPoint>(top: T? = nil, leading: T? = nil, bottom: T? = nil, trailing: T? = nil) {
+        self.init(
+            top: CGFloat(top ?? .zero),
+            leading: CGFloat(leading ?? .zero),
+            bottom: CGFloat(bottom ?? .zero),
+            trailing: CGFloat(trailing ?? .zero)
+        )
+    }
     
-    var horizontalInsets: CGFloat { leading + trailing }
+    init<T: RawRepresentable>(top: T? = nil, leading: T? = nil, bottom: T? = nil, trailing: T? = nil) where T.RawValue: BinaryFloatingPoint {
+        self.init(
+            top: top?.rawValue ?? .zero,
+            leading: leading?.rawValue ?? .zero,
+            bottom: bottom?.rawValue ?? .zero,
+            trailing: trailing?.rawValue ?? .zero
+        )
+    }
+    
+    func verticalInsets() -> CGFloat {
+        top + bottom
+    }
+    
+    func horizontalInsets() -> CGFloat {
+        leading + trailing
+    }
     
     func edgeInsets() -> UIEdgeInsets {
-        UIEdgeInsets(top: top, left: leading, bottom: bottom, right: trailing)
+        UIEdgeInsets(
+            top: top,
+            left: leading,
+            bottom: bottom,
+            right: trailing
+        )
     }
     
     func rightToLeftEdgeInsets() -> UIEdgeInsets {
-        UIEdgeInsets(top: top, left: trailing, bottom: bottom, right: leading)
+        UIEdgeInsets(
+            top: top,
+            left: trailing,
+            bottom: bottom,
+            right: leading
+        )
     }
 }
