@@ -35,9 +35,10 @@ public extension NSAttributedString {
         /// The kerning of the text.
         case kern(Double)
         
-        @available(iOS 14.0, *)
+        #if swift(>=5.3)
         /// The amount to modify default tracking. 0 means tracking is disabled.
         case tracking(Float)
+        #endif
         
         /// The strikethrough style of the text.
         case strikethroughStyle(NSUnderlineStyle)

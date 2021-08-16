@@ -67,17 +67,26 @@ public extension UIKeyCommand {
         
         // MARK: Menu
         
-        @available(iOS 13.0, *)
-        case menuAttributes(UIMenuElement.Attributes, key: Options)
-        
-        @available(iOS 13.0, *)
-        case menuState(UIMenuElement.State, key: Options)
-        
+        #if swift(>=5.0)
+        public enum MenuElementAttributes {
+            case disabled, destructive, hidden
+        }
+        case menuAttributes(MenuElementAttributes, key: Options)
+        #endif
+
+        #if swift(>=5.0)
+        public enum MenuElementState {
+            case off, on, mixed
+        }
+        case menuState(MenuElementState, key: Options)
+        #endif
+
         // MARK: Image
         
-        @available(iOS 13.0, *)
+        #if swift(>=5.0)
         case image(UIImage, key: Options)
-        
+        #endif
+
     }
 }
 
@@ -226,7 +235,14 @@ public extension UIKeyCommand.Options {
         guard case let .menuState(state, _) = self else {
             return .off
         }
-        return state
+        switch state {
+        case .mixed:
+            return .mixed
+        case .on:
+            return .on
+        case .off:
+            return .off
+        }
     }
     
     @available(iOS 13.0, *)
@@ -234,7 +250,14 @@ public extension UIKeyCommand.Options {
         guard case let .menuAttributes(attributes, _) = self else {
             return []
         }
-        return attributes
+        switch attributes {
+        case .disabled:
+            return .disabled
+        case .destructive:
+            return .destructive
+        case .hidden:
+            return .hidden
+        }
     }
     
     @available(iOS 13.0, *)

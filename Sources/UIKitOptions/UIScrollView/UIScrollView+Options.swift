@@ -119,9 +119,10 @@ public extension UIScrollView {
         /// The behavior for determining the adjusted content offsets.
         case contentInsetAdjustmentBehavior(UIScrollView.ContentInsetAdjustmentBehavior)
         
-        @available(iOS 13.0, *)
+        #if swift(>=5.0)
         /// Configures whether the scroll indicator insets are automatically adjusted by the system.
         case automaticallyAdjustsScrollIndicatorInsets(Bool)
+        #endif
         
         /// The delegate of the scroll-view object.
         case delegate(UIScrollViewDelegate?)

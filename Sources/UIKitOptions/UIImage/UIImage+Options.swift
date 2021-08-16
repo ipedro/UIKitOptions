@@ -41,9 +41,10 @@ extension UIImage {
         /// The rendering mode controls how UIKit uses color information to display an image.
         case renderingMode(RenderingMode)
         
-        @available(iOS 13.0, *)
+        #if swift(>=5.0)
         case tintColor(_ tintColor: UIColor, renderingMode: RenderingMode = .automatic)
-        
+        #endif
+
         case size(CGSize)
         
     }
