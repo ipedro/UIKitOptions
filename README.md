@@ -1,3 +1,3 @@
 # UIKitOptions
 
-A description of this package.
+Convienice tools for UIKit components.
