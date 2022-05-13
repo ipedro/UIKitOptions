@@ -12,7 +12,7 @@ import UIKit
 public extension UIKeyCommand {
     
     /// Options that specify how to create a `UIKeyCommand` object.
-    indirect enum Options: Equatable {
+    indirect enum Options: Hashable {
         
         // MARK: Alphanumeric Keys
         
